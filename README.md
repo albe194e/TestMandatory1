@@ -97,6 +97,3 @@
 ### Test Case 8: Stress test for bulk generation
 * **Input:** Request fake person information for the upper limit (100 people) and lower limit (2 people).
 * **Expected Output:** The API should handle the request without timing out, and all generated people should have valid fields.
-
-
-## White-box test cases
