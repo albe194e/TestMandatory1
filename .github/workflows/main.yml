@@ -38,7 +38,6 @@ jobs:
       # Step 5: Set environment variables for H2 and your application
       - name: Set Environment Variables
         run: |
-          echo "SPRING_PROFILES_ACTIVE=test" >> $GITHUB_ENV
           echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
 
       # Step 6: Start your backend application (API)
