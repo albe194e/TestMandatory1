@@ -1,5 +1,6 @@
 package com.example.testmandatory1;
 
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
 
 public class Person {
 
