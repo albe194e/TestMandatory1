@@ -36,8 +36,9 @@ public class Controller {
     public void getAddress() {
     }
 
-    @GetMapping("/phonenumber")
-    public void getPhoneNumber() {
+    @GetMapping("/phoneNumber")
+    public String getPhoneNumber() {
+        return service.generatePhoneNumber();
     }
 
     @GetMapping("/person/{id}")
