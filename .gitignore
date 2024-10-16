@@ -1,7 +1,6 @@
 
 backend/target/
 .idea/
-backend/target/classes/application.properties
-*.properties
 /backend/target
 .env
+backend/src/main/resources/application-local.properties
