@@ -1,0 +1,110 @@
+@import '_variables.css';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--fontMain);
+}
+
+body {
+    @media (min-width: 850px) {
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+    @media (min-width: 1280px) {
+        margin-left: 20vw;
+        margin-right: 20vw;
+    }
+}
+
+header {
+    padding: 0.5rem 0 0.5rem 2rem;
+    color: var(--colorTextSecondary);
+    background-color: var(--colorPrimary);
+}
+
+main {
+    margin: 1rem 1rem 2rem 1rem;
+    padding: 0.5rem 1rem;
+    form {
+        margin-top: 1rem;
+        fieldset {
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+
+            > div:not(#submit) {
+                padding-bottom: 1rem;
+            }
+
+            input[type=submit] {
+                position: relative;
+                left: 2rem;
+                font-size: 1.1rem;
+                padding: 0.25rem 1rem;
+                border-width: thin;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+
+    #output {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: thin solid var(--colorTextPrimary);
+        border-radius: 0.5rem;
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    @media (min-width: 850px) {
+        width: 80%;
+    }
+    @media (min-width: 1280px) {
+        width: 60%;
+    }
+    padding: 0.25rem 0 0.25rem 0;
+    color: var(--colorTextSecondary);
+    background-color: var(--colorPrimary);
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+.error {
+    color: var(--colorError);
+}
+
+.address {
+    grid-row-end: span 2;
+    display: flex;
+    flex-flow: row nowrap;
+    > p {
+        margin-right: 1rem;
+    }
+}
+.personCard {
+    display: grid;
+    grid-template-areas:
+        "leftColumn rightColumn";
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 1rem;
+    line-height: 1.5rem;
+    [grid-area=rightColumn] {
+        font-weight: bold;
+    }
+    [grid-area=rightColumn] {
+        overflow: auto;
+    }
+}
+.personCard:not(:last-of-type) {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: thin solid var(--colorPrimary);
+}
