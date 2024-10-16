@@ -1,4 +1,4 @@
-package com.example.testmandatory1.test.unittest;
+package com.example.testmandatory1.unittest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,29 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AddressTest {
 
     private Address address;
-
-    // Constants for invalid street lengths
-    private final String tooShortStreet = "AB";
-    private final String tooLongStreet = "A".repeat(31);
-
-    // Constants for invalid number formats
-    private final String tooLowNumber = "0";
-    private final String tooHighNumber = "1000";
-    private final String multipleLettersNumber = "12AB";
-    private final String specialCharNumber = "12@";
-
-    // Constants for invalid floor formats
-    private final String tooLowFloor = "0";
-    private final String tooHighFloor = "100";
-    private final String invalidFloorFormat = "1st";
-
-    // Constants for invalid door formats
-    private final String tooLowDoorNumber = "0";
-    private final String tooHighDoorNumber = "51";
-    private final String multipleLettersDoor = "aAA";
-    private final String tooHighNumberWithLetterDoor = "a1000";
-    private final String specialCharDoor = "a@";
-    private final String uppercaseDoor = "A1";
 
     @BeforeEach
     void setUp() {
