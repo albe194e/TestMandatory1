@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,13 +19,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-@org.springframework.stereotype.Service
-public class Service {
+@Service
+public class PersonService {
 
     Random random = new Random();
 
     @Autowired
-    private Repository repository;
+    private PersonRepository repository;
 
     private static final List<String> VALID_PREFIXES = Arrays.asList(
             "2", "30", "31", "40", "41", "42", "50", "51", "52", "53", "60", "61",

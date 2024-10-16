@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-public class Controller {
+public class PersonController {
 
     @Autowired
-    private Service service;
+    private PersonService service;
 
     @GetMapping("/cpr")
     public String getCpr() {
