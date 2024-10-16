@@ -1,12 +1,12 @@
 package com.example.testmandatory1.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
 
-@Getter
-@Setter
+@Data
 @ToString
 public class Person {
 

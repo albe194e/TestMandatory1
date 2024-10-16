@@ -1,10 +1,10 @@
 package com.example.testmandatory1.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class PersonDto {
 
     private String cpr;

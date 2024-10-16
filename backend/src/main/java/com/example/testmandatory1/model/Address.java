@@ -1,15 +1,16 @@
 package com.example.testmandatory1.model;
 
 import com.example.testmandatory1.ValidationException;
+import lombok.Data;
 import lombok.Getter;
 
-@Getter
+@Data
 public class Address {
-    
+
     private String street, number, floor, door, city, postalCode;
 
     public Address(String street, String number, String floor, String door, String city, String postalCode) {
-        
+
         this.setStreet(street);
         this.setNumber(number);
         this.setFloor(floor);
@@ -19,12 +20,6 @@ public class Address {
     }
     public Address() {}
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-    public void setCity(String city) {
-        this.city = city;
-    }
     public void setDoor(String door) {
         String doorRegex = "^(th|mf|tv|([1-9]|[1-4][0-9]|50)|([a-z]-?[0-9]{1,3}))$";
 
@@ -64,4 +59,4 @@ public class Address {
 
         this.street = street;
     }
-}   
+}

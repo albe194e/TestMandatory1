@@ -1,14 +1,14 @@
 package com.example.testmandatory1;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class Address {
-    
+
     private String street, number, floor, door, city, postalCode;
 
     public Address(String street, String number, String floor, String door, String city, String postalCode) {
-        
+
         this.setStreet(street);
         this.setNumber(number);
         this.setFloor(floor);
@@ -63,4 +63,4 @@ public class Address {
 
         this.street = street;
     }
-}   
+}
