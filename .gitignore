@@ -1,5 +1,4 @@
 
-backend/src/main/resources/application.properties
 backend/target/
 .idea/
 backend/target/classes/application.properties
