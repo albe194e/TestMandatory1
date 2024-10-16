@@ -25,7 +25,12 @@ public class AddressService {
 
         List<CityPostalCode> codes = addressRepository.findAll();
 
-        CityPostalCode cityCode = codes.get(random.nextInt(589));
+        if (codes.isEmpty()) {
+            throw new IllegalArgumentException("No city postal codes available");
+        }
+
+        CityPostalCode cityCode = codes.get(random.nextInt(codes.size()));
+
 
         return new Address(
                 generateStreet(),
