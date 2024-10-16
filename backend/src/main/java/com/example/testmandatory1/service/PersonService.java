@@ -106,8 +106,7 @@ public class PersonService {
         Person randomPerson = persons.get(new Random().nextInt(persons.size()));
         randomPerson.setDob(generateDob());
         randomPerson.setCpr(generateCpr(randomPerson.getGender(), randomPerson.getDob()));
-        return new PersonDto(randomPerson.getName(), randomPerson.getSurname(),
-                randomPerson.getGender(), randomPerson.getDob(), randomPerson.getCpr());
+        return new PersonDto(randomPerson);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.testmandatory1.dto;
 
+import com.example.testmandatory1.model.Person;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,11 +14,11 @@ public class PersonDto {
     private String gender;
     private String dob;
 
-    public PersonDto(String cpr, String firstName, String lastName, String gender, String dob) {
-        this.cpr = cpr;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.dob = dob;
+    public PersonDto(Person person) {
+        this.cpr = person.getCpr();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
+        this.gender = person.getGender();
+        this.dob = person.getDob();
     }
 }
