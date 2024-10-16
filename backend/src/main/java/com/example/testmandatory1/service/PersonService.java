@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 
@@ -23,21 +25,23 @@ public class PersonService {
     private static final String[] EVEN_NUMBERS = {"0", "2", "4", "6", "8"};
 
 
-    public String generateDob() {
+    public LocalDate generateDob() {
         int year = 1900 + random.nextInt(121);
         int month = 1 + random.nextInt(12);
         int day = 1 + random.nextInt(31);
 
-        return String.format("%02d-%02d-%04d", day, month, year);
+        return LocalDate.of(year, month, day);
     }
 
-    public String generateCpr(String gender, String DateOfBirth) {
+    public String generateCpr(String gender, LocalDate unformattedDOB) {
         String cprGender = "";
+        DateTimeFormatter formattedDOB = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String DateOfBirth = unformattedDOB.format(formattedDOB);
 
-        if (gender.charAt(0) == 'f') {
+        if (gender.equalsIgnoreCase("female")) {
                 int index = random.nextInt(EVEN_NUMBERS.length);
                 cprGender = EVEN_NUMBERS[index];
-            } else if (gender.charAt(0) == 'm') {
+            } else if (gender.equalsIgnoreCase("male")) {
                 int index = random.nextInt(ODD_NUMBERS.length);
                 cprGender = ODD_NUMBERS[index];
             }

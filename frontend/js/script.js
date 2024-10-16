@@ -20,9 +20,9 @@ document.getElementById('frmGenerate').addEventListener('submit', function (even
     
   } else {
     if (numberOfPersons !== 1) {
-      endpoint = "/people/" + numberOfPersons
+      endpoint = "/detailed-person/" + numberOfPersons
     } else {
-      endpoint = "/person"
+      endpoint = "/detailed-person"
     }
   }
   console.log(baseUrl + endpoint)

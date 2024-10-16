@@ -71,7 +71,7 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/people/{number}")
+    @GetMapping("/detailed-person/{number}")
     public ResponseEntity<List<Person>> getPeople(@PathVariable int number) {
         try {
             return ResponseEntity.ok(generateService.generatePerson(number));
