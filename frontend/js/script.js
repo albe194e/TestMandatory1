@@ -1,4 +1,4 @@
-import { baseUrl } from "./info";
+import { baseUrl } from "info.js";
 
 document.querySelector('#frmGenerate').addEventListener('submit', (e) => {
   e.preventDefault();
