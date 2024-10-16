@@ -1,19 +1,16 @@
 {
   "name": "frontend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server ./ -p 5173 -c-1",
-    "cypress:run": "cypress run",
-    "cypress:open": "cypress open"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.15.0",
-    "http-server": "^14.1.1"
+    "vite": "^5.4.8"
   }
 }
