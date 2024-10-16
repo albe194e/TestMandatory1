@@ -43,11 +43,6 @@ public class PersonController {
 
     }
 
-    @GetMapping("/phoneNumber")
-    public String getPhoneNumber() {
-        return personService.generatePhoneNumber();
-    }
-
     @GetMapping("/person/{id}")
     public Person getPerson(@PathVariable String id) {
         return new Person();
