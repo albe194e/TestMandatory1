@@ -16,8 +16,8 @@ public class PersonDto {
 
     public PersonDto(Person person) {
         this.cpr = person.getCpr();
-        this.firstName = person.getFirstName();
-        this.lastName = person.getLastName();
+        this.firstName = person.getName();
+        this.lastName = person.getSurname();
         this.gender = person.getGender();
         this.dob = person.getDob();
     }

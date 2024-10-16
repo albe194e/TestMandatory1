@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Addre
 public class Person {
 
     private String cpr;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String surname;
     private String gender;
 
     private String dob;
@@ -20,16 +20,16 @@ public class Person {
     private String phoneNumber;
 
     public Person(String firstName, String lastName, String gender, String dob, String cpr) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = firstName;
+        this.surname = lastName;
         this.gender = gender.substring(0, 1).toUpperCase() + gender.substring(1).toLowerCase();
         this.dob = dob;
         this.cpr = cpr;
     }
 
     public Person(String firstName, String lastName, String gender) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = firstName;
+        this.surname = lastName;
         this.gender = gender;
     }
 
