@@ -1,4 +1,4 @@
-package com.example.testmandatory1.service;
+package com.example.testmandatory1;
 
 import com.example.testmandatory1.utility.PhoneNumberConstants;
 import org.springframework.stereotype.Service;

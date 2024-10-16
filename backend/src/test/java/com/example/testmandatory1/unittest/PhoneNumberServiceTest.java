@@ -1,6 +1,6 @@
 package com.example.testmandatory1.unittest;
 
-import com.example.testmandatory1.service.PhoneNumberService;
+import com.example.testmandatory1.PhoneNumberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

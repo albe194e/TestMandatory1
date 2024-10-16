@@ -1,9 +1,6 @@
 package com.example.testmandatory1;
 
-import com.example.testmandatory1.dto.CprNameGenderDobDto;
-import com.example.testmandatory1.dto.CprNameGenderDto;
-import com.example.testmandatory1.dto.NameGenderDto;
-import com.example.testmandatory1.dto.NameGenderDobDto;
+import com.example.testmandatory1.dto.PersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,55 +14,17 @@ import java.io.IOException;
 public class PersonController {
 
     @Autowired
-    private PersonService service;
+    private PersonService personService;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private PhoneNumberService phoneNumberService;
 
-    @GetMapping("/cpr")
-    public String getCpr() {
-        return "123456-7890";
-    }
 
-    @GetMapping("/firstname_lastname_gender")
-    public ResponseEntity<NameGenderDto> getFirstnameLastnameGender() {
+    @GetMapping("/person")
+    public ResponseEntity<PersonDto> getPerson() {
         try {
-            NameGenderDto randomPerson = service.displayRandomPerson();
-            return ResponseEntity.ok(randomPerson);
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null);
-        }
-    }
-
-    @GetMapping("/firstname_lastname_gender_dob")
-    public ResponseEntity<NameGenderDobDto> getFirstnameLastnameGenderDob() {
-        try {
-            NameGenderDobDto randomPerson = service.displayRandomPersonWithDob();
-            // TODO: ADD DOB TO THE RESPONSE
-            return ResponseEntity.ok(randomPerson);
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null);
-        }
-    }
-
-    @GetMapping("/cpr_firstname_lastname_gender")
-    public ResponseEntity<CprNameGenderDto> getCprFirstnameLastnameGender() {
-        try {
-            CprNameGenderDto randomPerson = service.displayRandomPersonWithCpr();
-            // TODO: ADD CPR TO THE RESPONSE
-            return ResponseEntity.ok(randomPerson);
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null);
-        }
-    }
-
-    @GetMapping("/cpr_firstname_lastname_gender_dob")
-    public ResponseEntity<CprNameGenderDobDto> getCprFirstnameLastnameGenderDob() {
-        try {
-            CprNameGenderDobDto randomPerson = service.displayRandomPersonWithCprAndDob();
-            // TODO: ADD CPR AND DOB TO THE RESPONSE
+            PersonDto randomPerson = personService.getRandomPerson();
             return ResponseEntity.ok(randomPerson);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -91,5 +50,10 @@ public class PersonController {
 
     @GetMapping("/people/{number}")
     public void getPeople(@PathVariable String number) {
+    }
+
+    @GetMapping("/phoneNumber")
+    public ResponseEntity<String> getPhoneNumber() {
+        return ResponseEntity.ok(phoneNumberService.generatePhoneNumber());
     }
 }

@@ -15,7 +15,7 @@ public class AddressService {
     Random random = new Random();
 
     @Autowired
-    private PersonRepository repository;
+    private AddressRepository repository;
     
     //Address
     public AddressDto generateAddress() {
