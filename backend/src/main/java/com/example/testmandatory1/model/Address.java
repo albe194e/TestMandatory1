@@ -47,16 +47,17 @@ public class Address {
             throw new ValidationException("Number: {" + number +  "} must match pattern either 1-999 (ex: 536) or 1-999A-Z (ex: 534B)");
         }
     }
+    
     public void setStreet(String street) {
-
-        if (!street.matches("[a-zA-Z]+")) {
-            throw new ValidationException(String.format("{} can only contain alphabetic chars", street));
+        if (!street.matches("[a-zA-ZæøåÆØÅ]+")) {
+            throw new ValidationException(String.format("%s can only contain alphabetic chars", street));
         }
 
-        if (street.length() < 3 && street.length() > 30) {
-            throw new ValidationException(String.format("{} Street name should be shorter than 2 chars and longer than 30", street));
+        if (street.length() < 3 || street.length() > 30) {
+            throw new ValidationException(String.format("%s Street name should be longer than 2 chars and shorter than 30", street));
         }
 
         this.street = street;
     }
+
 }
