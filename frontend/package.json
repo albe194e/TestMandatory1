@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server ./ -p 5173",
+    "start": "http-server ./ -p 5173 -c-1",
+    "cypress:run": "cypress run",
     "cypress:open": "cypress open"
   },
   "keywords": [],
