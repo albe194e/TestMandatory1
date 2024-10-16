@@ -20,6 +20,8 @@ public class PersonController {
     private PersonService service;
     @Autowired
     private AddressService addressService;
+    @Autowired
+    private PhoneNumberService phoneNumberService;
 
     @GetMapping("/cpr")
     public String getCpr() {
@@ -91,5 +93,10 @@ public class PersonController {
 
     @GetMapping("/people/{number}")
     public void getPeople(@PathVariable String number) {
+    }
+
+    @GetMapping("/phoneNumber")
+    public ResponseEntity<String> getPhoneNumber() {
+        return ResponseEntity.ok(phoneNumberService.generatePhoneNumber());
     }
 }
