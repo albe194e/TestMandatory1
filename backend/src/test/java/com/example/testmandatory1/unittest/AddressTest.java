@@ -1,11 +1,11 @@
 package com.example.testmandatory1.unittest;
+import com.example.testmandatory1.model.Address;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.testmandatory1.Address;
 import com.example.testmandatory1.ValidationException;
 
 import static org.junit.jupiter.api.Assertions.*;
