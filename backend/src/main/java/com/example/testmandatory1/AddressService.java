@@ -13,7 +13,7 @@ public class AddressService {
     Random random = new Random();
 
     @Autowired
-    private AddressRepository repository;
+    private PersonRepository repository;
     
     //Address
     public Address generateAddress() {
