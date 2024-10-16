@@ -4,3 +4,4 @@ backend/target/
 backend/target/classes/application.properties
 *.properties
 /backend/target
+.env
