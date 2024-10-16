@@ -1,13 +1,6 @@
-package com.example.testmandatory1.controller;
+package com.example.testmandatory1;
 
-import com.example.testmandatory1.model.Address;
-import com.example.testmandatory1.model.Person;
-import com.example.testmandatory1.ValidationException;
-import com.example.testmandatory1.dto.AddressDto;
 import com.example.testmandatory1.dto.PersonDto;
-import com.example.testmandatory1.service.AddressService;
-import com.example.testmandatory1.service.PersonService;
-import com.example.testmandatory1.service.PhoneNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,14 +33,13 @@ public class PersonController {
     }
 
     @GetMapping(value = "/address")
-    public ResponseEntity<AddressDto> getAddress() {
+    public ResponseEntity<Address> getAddress() {
 
         try {
             return ResponseEntity.ok(addressService.generateAddress());
         } catch (ValidationException e) {
             return ResponseEntity.badRequest().build();
         }
-
     }
 
     @GetMapping("/person/{id}")

@@ -1,16 +1,11 @@
-package com.example.testmandatory1.service;
+package com.example.testmandatory1;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.example.testmandatory1.model.Address;
-import com.example.testmandatory1.repository.AddressRepository;
-import com.example.testmandatory1.model.CityPostalCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.example.testmandatory1.dto.AddressDto;
 
 @Service
 public class AddressService {
@@ -18,12 +13,12 @@ public class AddressService {
     Random random = new Random();
 
     @Autowired
-    private AddressRepository addressRepository;
+    private PersonRepository repository;
     
     //Address
-    public AddressDto generateAddress() {
+    public Address generateAddress() {
 
-        List<CityPostalCode> codes = addressRepository.findAll();
+        List<CityPostalCode> codes = repository.findAll();
 
         CityPostalCode cityCode = codes.get(random.nextInt(589));
 
@@ -35,15 +30,14 @@ public class AddressService {
             cityCode.getCity(),
             cityCode.getCode()
         );
-
-        return toDto(a);
+        return a;
     }
 
     private String generateStreet() {
 
          StringBuilder sb = new StringBuilder();
          String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-         int length = random.nextInt(3, 31);
+         int length = random.nextInt(3, 16);
  
          for (int i = 0; i < length; i++) {
              int index = random.nextInt(alphabet.length());
@@ -109,16 +103,5 @@ public class AddressService {
         }
 
         return sb.toString();
-    }
-
-
-    private AddressDto toDto(Address a) {
-        
-        return new AddressDto(a.getStreet(),
-                              a.getNumber(), 
-                              a.getFloor(), 
-                              a.getDoor(),
-                              a.getCity(),
-                              a.getPostalCode());
     }
 }
