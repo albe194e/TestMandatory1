@@ -5,15 +5,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class NameGenderDto {
+public class PersonDto {
 
+    private String cpr;
     private String firstName;
     private String lastName;
     private String gender;
+    private String dob;
 
-    public NameGenderDto(String firstName, String lastName, String gender) {
+    public PersonDto(String cpr, String firstName, String lastName, String gender, String dob) {
+        this.cpr = cpr;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
+        this.dob = dob;
     }
 }
