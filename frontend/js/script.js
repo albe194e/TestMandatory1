@@ -9,7 +9,6 @@ document.getElementById('frmGenerate').addEventListener('submit', function (even
 
   let endpoint = '/';
 
-  alert('isPartial: ' + isPartial + ' numberOfPersons: ' + numberOfPersons + ' partialOptions: ' + partialOptions);
 });
 
 

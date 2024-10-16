@@ -1,61 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake Personal Data Generator</title>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mandatory Test 1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./js/script.js?v=${new Date().getTime()}" type="module"></script>
-</head>
-<body class="bg-gray-100 font-sans">
-<header class="bg-blue-600 text-white p-6">
+  </head>
+  <body class="bg-gray-100 font-sans">
+  <header class="bg-blue-600 text-white p-6">
     <h1 class="text-3xl font-bold text-center">Test Mandatory1</h1>
-</header>
-<main class="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+  </header>
+  <main class="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
     <section id="description" class="mb-6 text-center">
-        <p class="text-lg">This application generates fake personal data for Danish persons.</p>
+      <p class="text-lg">This application generates fake personal data for Danish persons.</p>
     </section>
     <form id="frmGenerate" class="space-y-6">
-        <fieldset class="border border-gray-300 p-4 rounded-lg">
-            <div id="person" class="flex items-center space-x-3 mb-4">
-                <input type="radio" name="fake-data" id="chkPerson" class="h-4 w-4 text-blue-600 focus:ring-blue-500" checked>
-                <input type="number" id="txtNumberPersons" min="1" max="100" value="1" required class="w-16 border border-gray-300 rounded p-1">
-                <label for="chkPerson" class="text-lg">person(s)</label>
-            </div>
-            <div id="partialOptions" class="flex items-center space-x-3 mb-4">
-                <input type="radio" name="fake-data" id="chkPartialOptions" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
-                <label for="chkPartialOptions" class="text-lg">Partial generation:</label>
-                <select id="cmbPartialOptions" class="border border-gray-300 rounded p-1">
-                    <option value="cpr" selected>CPR</option>
-                    <option value="name-gender">Name and gender</option>
-                    <option value="name-gender-dob">Name, gender and birthdate</option>
-                    <option value="cpr-name-gender">CPR, name and gender</option>
-                    <option value="cpr-name-gender-dob">CPR, name, gender, birthdate</option>
-                    <option value="address">Address</option>
-                    <option value="phone">Phone number</option>
-                </select>
-            </div>
-            <div id="submit" class="text-center">
-                <input type="submit" value="Generate" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-        </fieldset>
+      <fieldset class="border border-gray-300 p-4 rounded-lg">
+        <div id="person" class="flex items-center space-x-3 mb-4">
+          <input type="radio" name="fake-data" id="chkPerson" class="h-4 w-4 text-blue-600 focus:ring-blue-500" checked>
+          <input type="number" id="txtNumberPersons" min="1" max="100" value="1" required class="w-16 border border-gray-300 rounded p-1">
+          <label for="chkPerson" class="text-lg">person(s)</label>
+        </div>
+        <div id="partialOptions" class="flex items-center space-x-3 mb-4">
+          <input type="radio" name="fake-data" id="chkPartialOptions" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
+          <label for="chkPartialOptions" class="text-lg">Partial generation:</label>
+          <select id="cmbPartialOptions" class="border border-gray-300 rounded p-1">
+            <option value="cpr" selected>CPR</option>
+            <option value="name-gender">Name and gender</option>
+            <option value="name-gender-dob">Name, gender and birthdate</option>
+            <option value="cpr-name-gender">CPR, name and gender</option>
+            <option value="cpr-name-gender-dob">CPR, name, gender, birthdate</option>
+            <option value="address">Address</option>
+            <option value="phone">Phone number</option>
+          </select>
+        </div>
+        <div id="submit" class="text-center">
+          <input type="submit" value="Generate" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </fieldset>
     </form>
     <section id="output" class="hidden mt-6"></section>
-</main>
-<template id="personTemplate">
+  </main>
+  <template id="personTemplate">
     <article class="personCard p-4 bg-gray-50 rounded-lg shadow-md mt-4">
-        <div class="grid grid-cols-2 gap-4">
-            <p class="hidden cpr">CPR:</p><p class="hidden cprValue"></p>
-            <p class="hidden firstName">First name:</p><p class="hidden firstNameValue"></p>
-            <p class="hidden lastName">Last name:</p><p class="hidden lastNameValue"></p>
-            <p class="hidden gender">Gender:</p><p class="hidden genderValue"></p>
-            <p class="hidden dob">Date of birth:</p><p class="hidden dobValue"></p>
-            <p class="hidden address">Address:</p>
-            <p class="hidden streetValue"></p>
-            <p class="hidden townValue"></p>
-            <p class="hidden phoneNumber">Phone number:</p><p class="hidden phoneNumberValue"></p>
-        </div>
+      <div class="grid grid-cols-2 gap-4">
+        <p class="hidden cpr">CPR:</p><p class="hidden cprValue"></p>
+        <p class="hidden firstName">First name:</p><p class="hidden firstNameValue"></p>
+        <p class="hidden lastName">Last name:</p><p class="hidden lastNameValue"></p>
+        <p class="hidden gender">Gender:</p><p class="hidden genderValue"></p>
+        <p class="hidden dob">Date of birth:</p><p class="hidden dobValue"></p>
+        <p class="hidden address">Address:</p>
+        <p class="hidden streetValue"></p>
+        <p class="hidden townValue"></p>
+        <p class="hidden phoneNumber">Phone number:</p><p class="hidden phoneNumberValue"></p>
+      </div>
     </article>
-</template>
-</body>
+  </template>
+  </body>
 </html>
