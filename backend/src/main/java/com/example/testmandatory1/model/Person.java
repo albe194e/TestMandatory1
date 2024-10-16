@@ -29,6 +29,12 @@ public class Person {
         this.cpr = cpr;
     }
 
+    public Person(String gender, String surname, String name) {
+        this.gender = gender;
+        this.surname = surname;
+        this.name = name;
+    }
+
     public Person() {
     }
 

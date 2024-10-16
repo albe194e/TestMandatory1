@@ -47,7 +47,6 @@ public class PersonController {
         } catch (ValidationException e) {
             return ResponseEntity.badRequest().build();
         }
-
     }
 
     @GetMapping("/person/{id}")
