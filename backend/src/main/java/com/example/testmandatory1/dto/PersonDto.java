@@ -2,8 +2,6 @@ package com.example.testmandatory1.dto;
 
 import com.example.testmandatory1.model.Person;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class PersonDto {

@@ -19,17 +19,17 @@ public class Person {
 
     private String phoneNumber;
 
-    public Person(String firstName, String lastName, String gender, String dob, String cpr) {
-        this.name = firstName;
-        this.surname = lastName;
+    public Person(String name, String surname, String gender, String dob, String cpr) {
+        this.name = name;
+        this.surname = surname;
         this.gender = gender.substring(0, 1).toUpperCase() + gender.substring(1).toLowerCase();
         this.dob = dob;
         this.cpr = cpr;
     }
 
-    public Person(String firstName, String lastName, String gender) {
-        this.name = firstName;
-        this.surname = lastName;
+    public Person(String name, String surname, String gender) {
+        this.name = name;
+        this.surname = surname;
         this.gender = gender;
     }
 

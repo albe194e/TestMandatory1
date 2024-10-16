@@ -70,12 +70,12 @@ public class PersonService {
                 cprGender = ODD_NUMBERS[index];
             }
 
-        StringBuilder randomFillnumbers = new StringBuilder();
+        StringBuilder randomFillNumbers = new StringBuilder();
         for (int i = 0; i < 4; i++) {
-            randomFillnumbers.append(random.nextInt(10));
+            randomFillNumbers.append(random.nextInt(10));
         }
 
-        return DateOfBirth.substring(0, 4) + DateOfBirth.substring(6, 8) + randomFillnumbers + cprGender;
+        return DateOfBirth.substring(0, 4) + DateOfBirth.substring(6, 8) + randomFillNumbers + cprGender;
 
     }
     /*
