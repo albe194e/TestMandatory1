@@ -75,7 +75,7 @@ public class PersonService {
             randomFillNumbers.append(random.nextInt(10));
         }
 
-        return DateOfBirth.substring(0, 4) + DateOfBirth.substring(6, 8) + randomFillNumbers + cprGender;
+        return DateOfBirth.substring(0, 2) + DateOfBirth.substring(3, 5) + DateOfBirth.substring(8, 10) + "-" + randomFillNumbers + cprGender;
 
     }
     /*
