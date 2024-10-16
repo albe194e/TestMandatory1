@@ -1,6 +1,5 @@
 package com.example.testmandatory1.unittest;
 
-import com.example.testmandatory1.dto.PersonDto;
 import com.example.testmandatory1.model.Person;
 import com.example.testmandatory1.service.PersonService;
 import org.junit.jupiter.api.Test;
@@ -33,12 +32,12 @@ public class PersonTest {
         Mockito.doReturn(mockPersons).when(personService).loadPersonsFromFile();
 
         // Act
-        PersonDto personDto = personService.getRandomPerson();
+        Person person = personService.getRandomPerson();
 
         // Assert
-        assertNotNull(personDto);
-        assertTrue(personDto.getFirstName().equals("John") || personDto.getFirstName().equals("Jane"));
-        assertNotNull(personDto.getGender());
+        assertNotNull(person);
+        assertTrue(person.getName().equals("John") || person.getName().equals("Jane"));
+        assertNotNull(person.getGender());
     }
 
     @Test

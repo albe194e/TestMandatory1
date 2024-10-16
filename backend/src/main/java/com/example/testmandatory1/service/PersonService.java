@@ -1,7 +1,6 @@
 package com.example.testmandatory1.service;
 
 import com.example.testmandatory1.model.Person;
-import com.example.testmandatory1.dto.PersonDto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -21,35 +19,9 @@ public class PersonService {
 
     Random random = new Random();
 
-    private static final List<String> VALID_PREFIXES = Arrays.asList(
-            "2", "30", "31", "40", "41", "42", "50", "51", "52", "53", "60", "61",
-            "71", "81", "91", "92", "93", "342", "344", "345", "346", "347", "348", "349",
-            "356", "357", "359", "362", "365", "366", "389", "398", "431", "441", "462",
-            "466", "468", "472", "474", "476", "478", "485", "486", "488", "489", "493",
-            "494", "495", "496", "498", "499", "542", "543", "545", "551", "552", "556",
-            "571", "572", "573", "574", "577", "579", "584", "586", "587", "589", "597",
-            "598", "627", "629", "641", "649", "658", "662", "663", "664", "665", "667",
-            "692", "693", "694", "697", "771", "772", "782", "783", "785", "786", "788",
-            "789", "826", "827", "829"
-    );
-
     private static final String[] ODD_NUMBERS = {"1", "3", "5", "7", "9"};
     private static final String[] EVEN_NUMBERS = {"0", "2", "4", "6", "8"};
 
-    public String generatePhoneNumber() {
-
-
-        String prefix = VALID_PREFIXES.get(random.nextInt(VALID_PREFIXES.size()));
-
-        int remainingDigits = 8 - prefix.length();
-
-        StringBuilder phoneNumber = new StringBuilder(prefix);
-        for (int i = 0; i < remainingDigits; i++) {
-            phoneNumber.append(random.nextInt(10));
-        }
-
-        return phoneNumber.toString();
-    }
 
     public String generateDob() {
         int year = 1900 + random.nextInt(121);
@@ -62,20 +34,20 @@ public class PersonService {
     public String generateCpr(String gender, String DateOfBirth) {
         String cprGender = "";
 
-        if (gender.charAt(0) == 'M') {
+        if (gender.charAt(0) == 'f') {
                 int index = random.nextInt(EVEN_NUMBERS.length);
                 cprGender = EVEN_NUMBERS[index];
-            } else if (gender.charAt(0) == 'F') {
+            } else if (gender.charAt(0) == 'm') {
                 int index = random.nextInt(ODD_NUMBERS.length);
                 cprGender = ODD_NUMBERS[index];
             }
 
         StringBuilder randomFillNumbers = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             randomFillNumbers.append(random.nextInt(10));
         }
 
-        return DateOfBirth.substring(0, 4) + DateOfBirth.substring(6, 8) + randomFillNumbers + cprGender;
+        return DateOfBirth.substring(0, 2) + DateOfBirth.substring(3, 5) + DateOfBirth.substring(8, 10) + "-" + randomFillNumbers + cprGender;
 
     }
     /*
@@ -101,12 +73,12 @@ public class PersonService {
         }
     }
 
-    public PersonDto getRandomPerson() throws IOException {
+    public Person getRandomPerson() throws IOException {
         List<Person> persons = loadPersonsFromFile();
         Person randomPerson = persons.get(new Random().nextInt(persons.size()));
         randomPerson.setDob(generateDob());
         randomPerson.setCpr(generateCpr(randomPerson.getGender(), randomPerson.getDob()));
-        return new PersonDto(randomPerson);
+        return randomPerson;
     }
 
 }

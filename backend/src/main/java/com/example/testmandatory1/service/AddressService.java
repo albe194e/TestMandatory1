@@ -14,44 +14,43 @@ import com.example.testmandatory1.dto.AddressDto;
 
 @Service
 public class AddressService {
-    
+
     Random random = new Random();
 
     @Autowired
     private AddressRepository addressRepository;
-    
+
     //Address
-    public AddressDto generateAddress() {
+    public Address generateAddress() {
 
         List<CityPostalCode> codes = addressRepository.findAll();
 
         CityPostalCode cityCode = codes.get(random.nextInt(589));
 
-        Address a = new Address(
-            generateStreet(),
-            generateStreetNumber(),
-            generateFloor(),
-            generateDoor(),
-            cityCode.getCity(),
-            cityCode.getCode()
+        return new Address(
+                generateStreet(),
+                generateStreetNumber(),
+                generateFloor(),
+                generateDoor(),
+                cityCode.getCity(),
+                cityCode.getCode()
         );
-
-        return toDto(a);
     }
 
     private String generateStreet() {
 
-         StringBuilder sb = new StringBuilder();
-         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-         int length = random.nextInt(3, 31);
- 
-         for (int i = 0; i < length; i++) {
-             int index = random.nextInt(alphabet.length());
-             sb.append(alphabet.charAt(index));
-         }
- 
-         return sb.toString();
+        StringBuilder sb = new StringBuilder();
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        int length = random.nextInt(3, 31);
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(alphabet.length());
+            sb.append(alphabet.charAt(index));
+        }
+
+        return sb.toString();
     }
+
     private String generateStreetNumber() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         int streetNumber = random.nextInt(1, 1000);
@@ -74,11 +73,12 @@ public class AddressService {
         if (isGroundFloow) {
             sb.append("st");
         } else {
-            sb.append(String.valueOf(random.nextInt(1, 100)));
+            sb.append(random.nextInt(1, 100));
         }
 
         return sb.toString();
     }
+
     //Door. “th”, “mf”, “tv”, a number from 1 to 50, or a lowercase letter optionally followed by a dash, then followed by one to three numeric digits (e.g., c3, d-14)
     private String generateDoor() {
 
@@ -88,11 +88,11 @@ public class AddressService {
         switch (doorType) {
             case 0:
                 List<String> validDoors = Arrays.asList(
-                "th", "mf", "tv");
+                        "th", "mf", "tv");
                 sb.append(validDoors.get(random.nextInt(3)));
                 break;
             case 1:
-                sb.append(String.valueOf(random.nextInt(1, 51)));
+                sb.append(random.nextInt(1, 51));
                 break;
             case 2:
                 String letters = "abcdefghijklmnopqrstuvwxyz";
@@ -101,9 +101,9 @@ public class AddressService {
                 if (hasDash) {
                     sb.append('-');
                 }
-                sb.append(String.valueOf(random.nextInt(1, 1000)));
+                sb.append(random.nextInt(1, 1000));
                 break;
-        
+
             default:
                 break;
         }
@@ -111,14 +111,4 @@ public class AddressService {
         return sb.toString();
     }
 
-
-    private AddressDto toDto(Address a) {
-        
-        return new AddressDto(a.getStreet(),
-                              a.getNumber(), 
-                              a.getFloor(), 
-                              a.getDoor(),
-                              a.getCity(),
-                              a.getPostalCode());
-    }
 }

@@ -2,7 +2,8 @@ package com.example.testmandatory1.controller;
 
 import com.example.testmandatory1.ValidationException;
 import com.example.testmandatory1.dto.AddressDto;
-import com.example.testmandatory1.dto.PersonDto;
+import com.example.testmandatory1.model.Address;
+import com.example.testmandatory1.model.Person;
 import com.example.testmandatory1.service.AddressService;
 import com.example.testmandatory1.service.PersonService;
 import com.example.testmandatory1.service.PhoneNumberService;
@@ -31,9 +32,23 @@ public class PersonController {
 
 
     @GetMapping("/person")
-    public ResponseEntity<PersonDto> getPerson() {
+    public ResponseEntity<Person> getPerson() {
         try {
-            PersonDto randomPerson = personService.getRandomPerson();
+            Person randomPerson = personService.getRandomPerson();
+            return ResponseEntity.ok(randomPerson);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        }
+    }
+
+    @GetMapping("/detailed-person")
+    public ResponseEntity<Person> getDetailedPerson() {
+        try {
+            Person randomPerson = personService.getRandomPerson();
+            randomPerson.setAddress(addressService.generateAddress());
+            randomPerson.setPhoneNumber(phoneNumberService.generatePhoneNumber());
+
             return ResponseEntity.ok(randomPerson);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -42,7 +57,7 @@ public class PersonController {
     }
 
     @GetMapping(value = "/address")
-    public ResponseEntity<AddressDto> getAddress() {
+    public ResponseEntity<Address> getAddress() {
 
         try {
             return ResponseEntity.ok(addressService.generateAddress());
