@@ -1,4 +1,4 @@
-package com.example.testmandatory1;
+package com.example.testmandatory1.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

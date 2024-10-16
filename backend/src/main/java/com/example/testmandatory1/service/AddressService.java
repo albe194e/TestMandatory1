@@ -1,9 +1,12 @@
-package com.example.testmandatory1;
+package com.example.testmandatory1.service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.example.testmandatory1.model.Address;
+import com.example.testmandatory1.repository.AddressRepository;
+import com.example.testmandatory1.model.CityPostalCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +18,12 @@ public class AddressService {
     Random random = new Random();
 
     @Autowired
-    private AddressRepository repository;
+    private AddressRepository addressRepository;
     
     //Address
     public AddressDto generateAddress() {
 
-        List<CityPostalCode> codes = repository.findAll();
+        List<CityPostalCode> codes = addressRepository.findAll();
 
         CityPostalCode cityCode = codes.get(random.nextInt(589));
 

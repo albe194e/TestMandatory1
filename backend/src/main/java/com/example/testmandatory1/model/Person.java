@@ -1,4 +1,4 @@
-package com.example.testmandatory1;
+package com.example.testmandatory1.model;
 
 import lombok.Getter;
 import lombok.Setter;

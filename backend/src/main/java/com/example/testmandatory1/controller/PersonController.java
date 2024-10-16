@@ -1,6 +1,12 @@
-package com.example.testmandatory1;
+package com.example.testmandatory1.controller;
 
+import com.example.testmandatory1.model.Address;
+import com.example.testmandatory1.model.Person;
+import com.example.testmandatory1.ValidationException;
 import com.example.testmandatory1.dto.PersonDto;
+import com.example.testmandatory1.service.AddressService;
+import com.example.testmandatory1.service.PersonService;
+import com.example.testmandatory1.service.PhoneNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

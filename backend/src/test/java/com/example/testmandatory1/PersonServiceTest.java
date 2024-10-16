@@ -1,5 +1,6 @@
 package com.example.testmandatory1;
 
+import com.example.testmandatory1.service.PersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class PersonServiceTest {
 
     @Autowired
-    private PersonService service;
+    private PersonService personService;
 
     @Test
     void displayRandomPerson() {
