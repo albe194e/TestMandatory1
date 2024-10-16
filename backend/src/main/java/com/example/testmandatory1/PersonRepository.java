@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository extends JpaRepository<CityPostalCode, String> {
 
     CityPostalCode findByCode(String code);
+
 }
