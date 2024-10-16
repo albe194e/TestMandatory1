@@ -20,7 +20,7 @@
       <fieldset class="border border-gray-300 p-4 rounded-lg">
         <div id="person" class="flex items-center space-x-3 mb-4">
           <input type="radio" name="fake-data" id="chkPerson" class="h-4 w-4 text-blue-600 focus:ring-blue-500" checked>
-          <input type="number" id="txtNumberPersons" min="1" max="100" value="1" required class="w-16 border border-gray-300 rounded p-1">
+          <input type="number" id="txtNumberPersons" min="2" max="100" value="2" required class="w-16 border border-gray-300 rounded p-1">
           <label for="chkPerson" class="text-lg">person(s)</label>
         </div>
         <div id="partialOptions" class="flex items-center space-x-3 mb-4">
@@ -44,19 +44,20 @@
     <section id="output" class="hidden mt-6"></section>
   </main>
   <template id="personTemplate">
-    <article class="personCard p-4 bg-gray-50 rounded-lg shadow-md mt-4">
-      <div class="grid grid-cols-2 gap-4">
-        <p class="hidden cpr">CPR:</p><p class="hidden cprValue"></p>
-        <p class="hidden firstName">First name:</p><p class="hidden firstNameValue"></p>
-        <p class="hidden lastName">Last name:</p><p class="hidden lastNameValue"></p>
-        <p class="hidden gender">Gender:</p><p class="hidden genderValue"></p>
-        <p class="hidden dob">Date of birth:</p><p class="hidden dobValue"></p>
-        <p class="hidden address">Address:</p>
-        <p class="hidden streetValue"></p>
-        <p class="hidden townValue"></p>
-        <p class="hidden phoneNumber">Phone number:</p><p class="hidden phoneNumberValue"></p>
+    <article class="personCard p-6 bg-white rounded-lg shadow-lg mt-6 border border-gray-300 hover:bg-gray-100 transition duration-300 ease-in-out transform hover:scale-105">
+      <div class="grid grid-cols-2 gap-4 text-gray-700">
+        <p class="hidden cpr font-semibold">CPR: <span class="cprValue font-normal"></span></p>
+        <p class="hidden firstName font-semibold">First name: <span class="firstNameValue font-normal"></span></p>
+        <p class="hidden lastName font-semibold">Last name: <span class="lastNameValue font-normal"></span></p>
+        <p class="hidden gender font-semibold">Gender: <span class="genderValue font-normal"></span></p>
+        <p class="hidden dob font-semibold">Date of birth: <span class="dobValue font-normal"></span></p>
+        <p class="hidden address font-semibold">Address: 
+          <span class="streetValue font-normal"></span>, <span class="townValue font-normal"></span>
+        </p>
+        <p class="hidden phoneNumber font-semibold">Phone number: <span class="phoneNumberValue font-normal"></span></p>
       </div>
     </article>
   </template>
+  
   </body>
 </html>
