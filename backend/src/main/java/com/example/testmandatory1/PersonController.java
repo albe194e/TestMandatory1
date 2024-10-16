@@ -18,6 +18,8 @@ public class PersonController {
 
     @Autowired
     private PersonService service;
+    @Autowired
+    private AddressService addressService;
 
     @GetMapping("/cpr")
     public String getCpr() {
@@ -73,7 +75,13 @@ public class PersonController {
 
     @GetMapping(value = "/address")
     public ResponseEntity<Address> getAddress() {
-        return ResponseEntity.ok(service.generateAddress());
+
+        try {
+            return ResponseEntity.ok(addressService.generateAddress());
+        } catch (ValidationException e) {
+            return ResponseEntity.badRequest().build();
+        }
+        
     }
 
     @GetMapping("/phoneNumber")

@@ -25,19 +25,42 @@ public class Address {
         this.city = city;
     }
     private void setDoor(String door) {
-        this.door = door;
+        String doorRegex = "^(th|mf|tv|([1-9]|[1-4][0-9]|50)|([a-z]-?[0-9]{1,3}))$";
+
+        if (door.matches(doorRegex)) {
+            this.door = door;
+        } else {
+            throw new ValidationException("Door: {" + door + "} must match \"th\", \"mf\", \"tv\", a number 1-50, or a lowercase letter followed by optional '-' and 1-3 digits (e.g., c3, d-14)");
+        }
     }
     private void setFloor(String floor) {
-        this.floor = floor;
+
+        if (floor.equals("st") || floor.matches("^([1-9][0-9]?)$")) {
+            this.floor = floor;
+        } else {
+            throw new ValidationException("Floor: {" + floor + "} must either be \"st\" or \"1-99\"");
+        }
     }
     private void setNumber(String number) {
-        this.number = number;
+
+        String numberAndLetterRegex = "([1-9][0-9]{0,2})([A-Z])";
+        String numberOnly = "^([1-9][0-9]{0,2})$";
+        if (number.matches(numberAndLetterRegex) || number.matches(numberOnly)) {
+            this.number = number;
+        } else {
+            throw new ValidationException("Number: {" + number +  "} must match pattern either 1-999 (ex: 536) or 1-999A-Z (ex: 534B)");
+        }
     }
     private void setStreet(String street) {
 
         if (!street.matches("[a-zA-Z]+")) {
             throw new ValidationException(String.format("{} can only contain alphabetic chars", street));
         }
+
+        if (street.length() > 15 || street.length() < 3) {
+            throw new ValidationException(String.format("{} length can only be between 3 - 15 chars", street));
+        }
+
         this.street = street;
     }
 }   
