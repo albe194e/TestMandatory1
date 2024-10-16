@@ -16,11 +16,7 @@ public class CityPostalCode {
     @Column
     private String city;
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getCode() {
-        return code;
+    public CityPostalCode() {
+        
     }
 }
