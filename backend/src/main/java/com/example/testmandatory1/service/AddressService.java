@@ -10,6 +10,8 @@ import com.example.testmandatory1.model.CityPostalCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.testmandatory1.dto.AddressDto;
+
 @Service
 public class AddressService {
     
@@ -19,7 +21,7 @@ public class AddressService {
     private AddressRepository addressRepository;
     
     //Address
-    public Address generateAddress() {
+    public AddressDto generateAddress() {
 
         List<CityPostalCode> codes = addressRepository.findAll();
 
@@ -33,14 +35,15 @@ public class AddressService {
             cityCode.getCity(),
             cityCode.getCode()
         );
-        return a;
+
+        return toDto(a);
     }
 
     private String generateStreet() {
 
          StringBuilder sb = new StringBuilder();
          String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-         int length = random.nextInt(3, 16);
+         int length = random.nextInt(3, 31);
  
          for (int i = 0; i < length; i++) {
              int index = random.nextInt(alphabet.length());
@@ -106,5 +109,16 @@ public class AddressService {
         }
 
         return sb.toString();
+    }
+
+
+    private AddressDto toDto(Address a) {
+        
+        return new AddressDto(a.getStreet(),
+                              a.getNumber(), 
+                              a.getFloor(), 
+                              a.getDoor(),
+                              a.getCity(),
+                              a.getPostalCode());
     }
 }

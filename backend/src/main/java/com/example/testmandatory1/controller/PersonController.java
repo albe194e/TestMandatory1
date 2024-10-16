@@ -3,6 +3,7 @@ package com.example.testmandatory1.controller;
 import com.example.testmandatory1.model.Address;
 import com.example.testmandatory1.model.Person;
 import com.example.testmandatory1.ValidationException;
+import com.example.testmandatory1.dto.AddressDto;
 import com.example.testmandatory1.dto.PersonDto;
 import com.example.testmandatory1.service.AddressService;
 import com.example.testmandatory1.service.PersonService;
@@ -39,7 +40,7 @@ public class PersonController {
     }
 
     @GetMapping(value = "/address")
-    public ResponseEntity<Address> getAddress() {
+    public ResponseEntity<AddressDto> getAddress() {
 
         try {
             return ResponseEntity.ok(addressService.generateAddress());

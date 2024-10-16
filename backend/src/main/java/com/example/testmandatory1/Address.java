@@ -1,6 +1,5 @@
-package com.example.testmandatory1.model;
+package com.example.testmandatory1;
 
-import com.example.testmandatory1.ValidationException;
 import lombok.Getter;
 
 @Getter
