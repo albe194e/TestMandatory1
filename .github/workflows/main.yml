@@ -50,7 +50,7 @@ jobs:
       # Step 7: Run Unit Tests (for backend, always run on branches except main)
       - name: Run Unit Tests
         working-directory: backend
-        run: mvn test
+        run: mvn test -e -X    
 
       # Step 8: Install Postman CLI
       - name: Install Postman CLI
