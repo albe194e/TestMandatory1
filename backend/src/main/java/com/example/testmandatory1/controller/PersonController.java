@@ -8,12 +8,15 @@ import com.example.testmandatory1.service.PersonService;
 import com.example.testmandatory1.service.PhoneNumberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
 @RestController
+@CrossOrigin
 public class PersonController {
 
     private final PersonService personService;
@@ -48,7 +51,11 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/phoneNumber")
+    @GetMapping("/people/{number}")
+    public void getPeople(@PathVariable String number) {
+    }
+
+    @GetMapping("/phone")
     public ResponseEntity<String> getPhoneNumber() {
         return ResponseEntity.ok(phoneNumberService.generatePhoneNumber());
     }

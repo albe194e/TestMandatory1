@@ -1,15 +1,32 @@
-const baseUrl = 'http://localhost/8080';
+const baseUrl = 'http://localhost:8080';
 
 document.getElementById('frmGenerate').addEventListener('submit', function (event) {
   event.preventDefault();
 
   const isPartial = document.getElementById('chkPartialOptions').checked;
-  const numberOfPersons = document.getElementById('txtNumberOfPersons').value;
+  const numberOfPersons = document.getElementById('txtNumberPersons').value;
   const partialOptions = document.getElementById('cmbPartialOptions').value;
 
-  let endpoint = '/';
+  let endpoint = '';
 
   alert('isPartial: ' + isPartial + ' numberOfPersons: ' + numberOfPersons + ' partialOptions: ' + partialOptions);
+
+  if (isPartial) {
+    if (partialOptions === "address" || partialOptions === "phone") {
+      endpoint = `/${partialOptions}`
+    } else {
+      endpoint = "/person"
+    }
+    
+  } else {
+    if (numberOfPersons !== 1) {
+      endpoint = "/people/" + numberOfPersons
+    } else {
+      endpoint = "/person"
+    }
+  }
+  console.log(baseUrl + endpoint)
+  fetch(baseUrl + endpoint)
 });
 
 
