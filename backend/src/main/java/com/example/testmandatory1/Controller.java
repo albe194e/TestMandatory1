@@ -11,6 +11,8 @@ public class Controller {
 
     @Autowired
     private Service service;
+    @Autowired
+    private AddressService addressService;
 
     @GetMapping("/cpr")
     public String getCpr() {
@@ -35,7 +37,13 @@ public class Controller {
 
     @GetMapping(value = "/address")
     public ResponseEntity<Address> getAddress() {
-        return ResponseEntity.ok(service.generateAddress());
+
+        try {
+            return ResponseEntity.ok(addressService.generateAddress());
+        } catch (ValidationException e) {
+            return ResponseEntity.badRequest().build();
+        }
+        
     }
 
     @GetMapping("/phoneNumber")
