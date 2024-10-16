@@ -77,8 +77,8 @@ public class Controller {
     }
 
     @GetMapping("/phoneNumber")
-    public String getPhoneNumber() {
-        return service.generatePhoneNumber();
+    public ResponseEntity<String> getPhoneNumber() {
+        return ResponseEntity.ok(service.generatePhoneNumber());
     }
 
     @GetMapping("/person/{id}")
