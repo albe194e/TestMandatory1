@@ -81,12 +81,7 @@ public class PersonController {
         } catch (ValidationException e) {
             return ResponseEntity.badRequest().build();
         }
-        
-    }
 
-    @GetMapping("/phoneNumber")
-    public ResponseEntity<String> getPhoneNumber() {
-        return ResponseEntity.ok(service.generatePhoneNumber());
     }
 
     @GetMapping("/person/{id}")
