@@ -70,12 +70,12 @@ public class PersonService {
                 cprGender = ODD_NUMBERS[index];
             }
 
-        StringBuilder randomFillnumbers = new StringBuilder();
+        StringBuilder randomFillNumbers = new StringBuilder();
         for (int i = 0; i < 4; i++) {
-            randomFillnumbers.append(random.nextInt(10));
+            randomFillNumbers.append(random.nextInt(10));
         }
 
-        return DateOfBirth.substring(0, 4) + DateOfBirth.substring(6, 8) + randomFillnumbers + cprGender;
+        return DateOfBirth.substring(0, 4) + DateOfBirth.substring(6, 8) + randomFillNumbers + cprGender;
 
     }
     /*
@@ -106,8 +106,7 @@ public class PersonService {
         Person randomPerson = persons.get(new Random().nextInt(persons.size()));
         randomPerson.setDob(generateDob());
         randomPerson.setCpr(generateCpr(randomPerson.getGender(), randomPerson.getDob()));
-        return new PersonDto(randomPerson.getName(), randomPerson.getSurname(),
-                randomPerson.getGender(), randomPerson.getDob(), randomPerson.getCpr());
+        return new PersonDto(randomPerson);
     }
 
 }

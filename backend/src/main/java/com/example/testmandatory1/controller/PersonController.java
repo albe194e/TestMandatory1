@@ -1,18 +1,14 @@
 package com.example.testmandatory1.controller;
 
-import com.example.testmandatory1.Address;
 import com.example.testmandatory1.ValidationException;
 import com.example.testmandatory1.dto.AddressDto;
 import com.example.testmandatory1.dto.PersonDto;
-import com.example.testmandatory1.model.Person;
 import com.example.testmandatory1.service.AddressService;
 import com.example.testmandatory1.service.PersonService;
 import com.example.testmandatory1.service.PhoneNumberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -20,12 +16,15 @@ import java.io.IOException;
 @RestController
 public class PersonController {
 
-    @Autowired
-    private PersonService personService;
-    @Autowired
-    private AddressService addressService;
-    @Autowired
-    private PhoneNumberService phoneNumberService;
+    private final PersonService personService;
+    private final AddressService addressService;
+    private final PhoneNumberService phoneNumberService;
+
+    public PersonController(PersonService personService, AddressService addressService, PhoneNumberService phoneNumberService) {
+        this.personService = personService;
+        this.addressService = addressService;
+        this.phoneNumberService = phoneNumberService;
+    }
 
 
     @GetMapping("/person")
@@ -47,15 +46,6 @@ public class PersonController {
         } catch (ValidationException e) {
             return ResponseEntity.badRequest().build();
         }
-    }
-
-    @GetMapping("/person/{id}")
-    public Person getPerson(@PathVariable String id) {
-        return new Person();
-    }
-
-    @GetMapping("/people/{number}")
-    public void getPeople(@PathVariable String number) {
     }
 
     @GetMapping("/phoneNumber")

@@ -1,8 +1,6 @@
 package com.example.testmandatory1.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
 
@@ -29,10 +27,10 @@ public class Person {
         this.cpr = cpr;
     }
 
-    public Person(String gender, String surname, String name) {
-        this.gender = gender;
-        this.surname = surname;
+    public Person(String name, String surname, String gender) {
         this.name = name;
+        this.surname = surname;
+        this.gender = gender;
     }
 
     public Person() {
