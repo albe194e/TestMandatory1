@@ -4,8 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" type="module"></script>
 </head>
 <body>
-    
+    <header>
+        <h1>Test Mandatory1</h1>
+    </header>
+    <main>
+        <section id="description">
+            <p>This application generates fake personal data for Danish persons.</p>
+        </section>
+        <form id="frmGenerate">
+            <fieldset>
+                <div id="person">
+                    <input type="radio" name="fake-data" id="chkPerson" checked>
+                    <input type="number" id="txtNumberPersons" min="1" max="100" value="1" required>
+                    <label for="chkPerson">person(s)</label>
+                </div>
+                <div id="partialOptions">
+                    <input type="radio" name="fake-data" id="chkPartialOptions">
+                    <label for="chkPartialOptions">Partial generation:</label>
+                    <select id="cmbPartialOptions">
+                        <option value="cpr" selected>CPR</option>
+                        <option value="name-gender">Name and gender</option>
+                        <option value="name-gender-dob">Name, gender and birthdate</option>
+                        <option value="cpr-name-gender">CPR, name and gender</option>
+                        <option value="cpr-name-gender-dob">CPR, name, gender, birthdate</option>
+                        <option value="address">Address</option>
+                        <option value="phone">Phone number</option>
+                    </select>
+                </div>
+                <div id="submit">
+                    <input type="submit" value="Generate">
+                </div>
+            </fieldset>
+        </form>
+        <section id="output" class="hidden"></section>
+    </main>
+    <template id="personTemplate">
+        <article class="personCard">
+            <p class="hidden cpr" grid-area="leftColumn">CPR: </p><p class="hidden cprValue" grid-area="rightColumn"></p>
+            <p class="hidden firstName" grid-area="leftColumn">First name: </p><p class="hidden firstNameValue" grid-area="rightColumn"></p>
+            <p class="hidden lastName" grid-area="leftColumn">Last name: </p><p class="hidden lastNameValue" grid-area="rightColumn"></p>
+            <p class="hidden gender" grid-area="leftColumn">Gender: </p><p class="hidden genderValue" grid-area="rightColumn"></p>
+            <p class="hidden dob" grid-area="leftColumn">Date of birth: </p><p class="hidden dobValue" grid-area="rightColumn"></p>
+            <p class="hidden address" grid-area="leftColumn">Address:</p>
+            <!-- <div> -->
+            <!-- Street, number, floor and door -->
+            <p class="hidden streetValue" grid-area="rightColumn"></p>
+            <!-- Postal code and town name -->
+            <p class="hidden townValue" grid-area="rightColumn"></p>
+            <!-- </div> -->
+            <p class="hidden phoneNumber" grid-area="leftColumn">Phone number: </p><p class="hidden phoneNumberValue" grid-area="rightColumn"></p>
+        </article>
+    </template>
 </body>
 </html>

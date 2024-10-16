@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
+
+:root {
+    --colorTextPrimary: black;
+    --colorTextSecondary: floralwhite;
+
+    --colorPrimary: #20408A;
+    --colorSecondary: lightgrey;
+    --colorTertiary: whitesmoke;
+    --colorError: red;
+
+    --fontMain: 'Raleway', Arial, Helvetica, sans-serif;
+}
