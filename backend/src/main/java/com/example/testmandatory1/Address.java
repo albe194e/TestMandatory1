@@ -18,13 +18,13 @@ public class Address {
     }
     public Address() {}
 
-    private void setPostalCode(String postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
-    private void setCity(String city) {
+    public void setCity(String city) {
         this.city = city;
     }
-    private void setDoor(String door) {
+    public void setDoor(String door) {
         String doorRegex = "^(th|mf|tv|([1-9]|[1-4][0-9]|50)|([a-z]-?[0-9]{1,3}))$";
 
         if (door.matches(doorRegex)) {
@@ -33,7 +33,7 @@ public class Address {
             throw new ValidationException("Door: {" + door + "} must match \"th\", \"mf\", \"tv\", a number 1-50, or a lowercase letter followed by optional '-' and 1-3 digits (e.g., c3, d-14)");
         }
     }
-    private void setFloor(String floor) {
+    public void setFloor(String floor) {
 
         if (floor.equals("st") || floor.matches("^([1-9][0-9]?)$")) {
             this.floor = floor;
@@ -41,24 +41,24 @@ public class Address {
             throw new ValidationException("Floor: {" + floor + "} must either be \"st\" or \"1-99\"");
         }
     }
-    private void setNumber(String number) {
+    public void setNumber(String number) {
 
         String numberAndLetterRegex = "([1-9][0-9]{0,2})([A-Z])";
-        String numberOnly = "^([1-9][0-9]{0,2})$";
-        if (number.matches(numberAndLetterRegex) || number.matches(numberOnly)) {
+        String numberOnlyRegex = "^([1-9][0-9]{0,2})$";
+        if (number.matches(numberAndLetterRegex) || number.matches(numberOnlyRegex)) {
             this.number = number;
         } else {
             throw new ValidationException("Number: {" + number +  "} must match pattern either 1-999 (ex: 536) or 1-999A-Z (ex: 534B)");
         }
     }
-    private void setStreet(String street) {
+    public void setStreet(String street) {
 
         if (!street.matches("[a-zA-Z]+")) {
             throw new ValidationException(String.format("{} can only contain alphabetic chars", street));
         }
 
-        if (street.length() > 15 || street.length() < 3) {
-            throw new ValidationException(String.format("{} length can only be between 3 - 15 chars", street));
+        if (street.length() < 3 && street.length() > 30) {
+            throw new ValidationException(String.format("{} Street name should be shorter than 2 chars and longer than 30", street));
         }
 
         this.street = street;
