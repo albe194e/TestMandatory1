@@ -3,15 +3,19 @@ package com.example.testmandatory1.unittest;
 import com.example.testmandatory1.model.Person;
 import com.example.testmandatory1.service.PersonService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestComponent;
+import org.springframework.boot.test.mock.mockito.SpyBean;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class cprTest {
 
-    PersonService personService = new PersonService();
+    private PersonService personService;
 
     /*@Test
     public void testCpr() {
@@ -40,4 +44,6 @@ public class cprTest {
         // Assert
         assertTrue(result);
     }*/
+
+
 }

@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
@@ -28,12 +29,13 @@ public class PersonService {
     public LocalDate generateDob() {
         int year = 1900 + random.nextInt(121);
         int month = 1 + random.nextInt(12);
-        int day = 1 + random.nextInt(31);
+        YearMonth yearMonth = YearMonth.of(year, month);
+        int day = 1 + random.nextInt(yearMonth.lengthOfMonth());
 
         return LocalDate.of(year, month, day);
     }
 
-    public String generateCpr(String gender, LocalDate unformattedDOB) {
+    public String generateCpr(String gender, LocalDate unformattedDOB) throws IllegalArgumentException {
         String cprGender = "";
         DateTimeFormatter formattedDOB = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String DateOfBirth = unformattedDOB.format(formattedDOB);
@@ -44,7 +46,9 @@ public class PersonService {
             } else if (gender.equalsIgnoreCase("male")) {
                 int index = random.nextInt(ODD_NUMBERS.length);
                 cprGender = ODD_NUMBERS[index];
-            }
+            } else {
+            throw new IllegalArgumentException();
+        }
 
         StringBuilder randomFillNumbers = new StringBuilder();
         for (int i = 0; i < 3; i++) {

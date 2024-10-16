@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,7 +51,17 @@ public class PersonTest {
         assertThrows(IllegalArgumentException.class, () -> personService.getRandomPerson());
     }
 
-
+    @Test
+    public void testGenerateCprCorrectInputAndFormat() {
+        // Arrange
+        String gender = "male";
+        LocalDate dob = LocalDate.of(2015, 4, 19);
+        // Act
+        boolean result = personService.generateCpr(gender,
+                dob).matches("^[0-9]{6}-[0-9]{4}$");
+        // Assert
+        assertTrue(result);
+    }
 }
 
 
