@@ -1,5 +1,7 @@
-package com.example.testmandatory1;
+package com.example.testmandatory1.service;
 
+import com.example.testmandatory1.model.Person;
+import com.example.testmandatory1.repository.PersonRepository;
 import com.example.testmandatory1.dto.PersonDto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
