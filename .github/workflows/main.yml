@@ -40,34 +40,28 @@ jobs:
         run: |
           echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
 
-      # Step 6: Copy application-prod.properties to application.properties for deployment
-      - name: Use prod config for GitHub Actions
-        working-directory: backend/src/main/resources
-        run: cp application-prod.properties application.properties
-
-      # Step 7: Start the backend application using the updated prod config
+      # Step 6: Start the backend application using test profile
       - name: Start Backend Application
         working-directory: backend
         run: |
-          mvn spring-boot:run -Ddebug &
+          mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=prod -Ddebug &
           sleep 5
 
-      # Step 8: Run Unit Tests (uses H2 in-memory database)
+      # Step 7: Run Unit Tests (uses H2 in-memory database)
       - name: Run Unit Tests
         working-directory: backend
-        run: mvn test -Dspring.profiles.active=test -e -X
+        run: mvn test -Ptest -Dspring-boot.run.arguments=--spring.profiles.active=test -e -X
 
-
-      # Step 9: Install Postman CLI
+      # Step 8: Install Postman CLI
       - name: Install Postman CLI
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 
-      # Step 10: Login to Postman CLI using API key from GitHub Secrets
+      # Step 9: Login to Postman CLI using API key from GitHub Secrets
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
 
-      # Step 11: Run Postman API Tests using the test database
+      # Step 10: Run Postman API Tests using the test database
       - name: Run API Tests
         run: |
           postman collection run "27701941-e6b1b59c-0565-4209-9936-5834d840a9c2" -e "27701941-ffcc469a-a8ad-489a-b4b6-f6079a5697a7" \
