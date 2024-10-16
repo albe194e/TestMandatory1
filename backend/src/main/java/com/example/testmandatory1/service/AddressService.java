@@ -16,12 +16,12 @@ public class AddressService {
     Random random = new Random();
 
     @Autowired
-    private AddressRepository repository;
+    private AddressRepository addressRepository;
     
     //Address
     public Address generateAddress() {
 
-        List<CityPostalCode> codes = repository.findAll();
+        List<CityPostalCode> codes = addressRepository.findAll();
 
         CityPostalCode cityCode = codes.get(random.nextInt(589));
 
