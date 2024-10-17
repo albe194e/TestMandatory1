@@ -13,7 +13,7 @@ services:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./database:/docker-entrypoint-initdb.d
+      - ./backend/src/main/resources/database:/docker-entrypoint-initdb.d
     networks:
       - mysql_net
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
