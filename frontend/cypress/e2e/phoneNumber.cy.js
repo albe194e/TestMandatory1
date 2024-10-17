@@ -1,12 +1,15 @@
-describe('generate phoneNumber', () => {
-  it('passes', () => {
-    cy.visit('http://127.0.0.1:5173')
+describe('Generate fake data', () => {
+  it('generates a phone number', () => {
+    cy.visit('http://localhost:5173')
 
+    cy.get('#chkPartialOptions').click()
+    
     cy.get('#cmbPartialOptions').select('phone')
 
-    cy.get('#chkPartialOptions').check()
+    cy.get('input[type="submit"]').click()
 
-    // Click the submit button
-    cy.get("input").contains("Generate").click()
+    cy.get('#output').should('not.have.class', 'hidden')
+
+    cy.get('.phoneNumberValue').should('not.be.empty')
   })
 })

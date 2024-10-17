@@ -12,16 +12,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Fetch all branches to ensure we can access main
+          fetch-depth: 0
 
-      # Step 2: Set up JDK for Java-based tests
+      # Step 2: Set up JDK for Java-based tests (Backend)
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: "temurin"
           java-version: "23"
 
-      # Step 3: Cache Maven dependencies (for backend)
+      # Step 3: Cache Maven dependencies (Backend)
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
@@ -30,15 +30,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # Step 4: Install Maven dependencies (for backend, without running tests)
+      # Step 4: Install Maven dependencies (Backend, without running tests)
       - name: Install Maven dependencies
         working-directory: backend
         run: mvn install -DskipTests
 
       # Step 5: Set environment variables
       - name: Set Environment Variables
-        run: |
-          echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
+        run: echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
 
       # Step 6: Start the backend application using test profile
       - name: Start Backend Application
@@ -47,22 +46,44 @@ jobs:
           mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=prod -Ddebug &
           sleep 5
 
-      # Step 7: Run Unit Tests (uses H2 in-memory database)
-      - name: Run Unit Tests
+      # Step 7: Install dependencies and build the frontend
+      - name: Install Frontend Dependencies
+        working-directory: frontend
+        run: npm install
+
+      # Step 8: Start the frontend application
+      - name: Start Frontend Application
+        working-directory: frontend
+        run: |
+          npm run dev &
+          sleep 10
+
+      # Step 9: Install Cypress and its dependencies
+      - name: Install Cypress
+        working-directory: frontend
+        run: npm install cypress --save-dev
+
+      # Step 10: Run Cypress tests (this will execute tests from frontend/cypress/e2e/)
+      - name: Run Cypress Tests
+        working-directory: frontend
+        run: npx cypress run --config baseUrl=http://localhost:5173
+
+      # Step 11: Run Unit Tests (uses H2 in-memory database)
+      - name: Run Unit Tests (Backend)
         working-directory: backend
         run: mvn test -Ptest -Dspring-boot.run.arguments=--spring.profiles.active=test -e -X
 
-      # Step 8: Install Postman CLI
+      # Step 12: Install Postman CLI
       - name: Install Postman CLI
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 
-      # Step 9: Login to Postman CLI using API key from GitHub Secrets
+      # Step 13: Login to Postman CLI using API key from GitHub Secrets
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
 
-      # Step 10: Run Postman API Tests using the test database
-      - name: Run API Tests
+      # Step 14: Run Postman API Tests using the test database
+      - name: Run Postman API Tests
         run: |
           postman collection run "27701941-e6b1b59c-0565-4209-9936-5834d840a9c2" -e "27701941-ffcc469a-a8ad-489a-b4b6-f6079a5697a7" \
             --env-var base_url="$BASE_URL"

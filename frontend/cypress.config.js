@@ -1,9 +1,11 @@
-const { defineConfig } = require("cypress");
+// Convert the require statement to import for ES module syntax
+import { defineConfig } from 'cypress';
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    baseUrl: 'http://localhost:5173',
   },
 });
