@@ -37,7 +37,7 @@ public class PersonService {
     }
 
     public String generateCpr(String gender, LocalDate unformattedDOB) throws ValidationException {
-        String cprGender = "";
+        String cprGender;
         DateTimeFormatter formattedDOB = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String DateOfBirth = unformattedDOB.format(formattedDOB);
 
@@ -57,9 +57,9 @@ public class PersonService {
         }
 
         StringBuilder cpr = new StringBuilder();
-        cpr.append(DateOfBirth.substring(0, 2));
-        cpr.append(DateOfBirth.substring(3, 5));
-        cpr.append(DateOfBirth.substring(8, 10));
+        cpr.append(DateOfBirth, 0, 2);
+        cpr.append(DateOfBirth, 3, 5);
+        cpr.append(DateOfBirth, 8, 10);
         cpr.append("-");
         cpr.append(randomFillNumbers);
         cpr.append(cprGender);
