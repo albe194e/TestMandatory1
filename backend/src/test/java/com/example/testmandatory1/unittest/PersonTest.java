@@ -1,5 +1,6 @@
 package com.example.testmandatory1.unittest;
 
+import com.example.testmandatory1.ValidationException;
 import com.example.testmandatory1.model.Person;
 import com.example.testmandatory1.service.PersonService;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -61,6 +63,44 @@ public class PersonTest {
                 dob).matches("^[0-9]{6}-[0-9]{4}$");
         // Assert
         assertTrue(result);
+    }
+
+    @Test
+    public void testGenerateCprInvalidGender() {
+        // Arrange
+        String gender = "person";
+        LocalDate dob = LocalDate.of(2015, 4, 19);
+        // Act & Assert
+        assertThrows(ValidationException.class, () -> personService.generateCpr(gender, dob));
+    }
+
+    @Test
+    public void testGenerateCprInvalidDate() {
+        // Arrange
+        String gender = "male";
+        LocalDate dob = null;
+        try {
+            dob = LocalDate.of(20150, 4222, 191); // This will throw an exception
+            boolean result = personService.generateCpr(gender, dob).matches("^[0-9]{6}-[0-9]{4}$");
+            assertFalse(result);
+        } catch (DateTimeException e) {
+            // Act
+            boolean result = false;
+            // Assert
+            assertFalse(result);
+            return;
+        }
+        // If no exception is thrown, fail the test
+        fail("Expected DateTimeException to be thrown");
+    }
+
+    @Test
+    public void testGenerateDobFormat() {
+        // Arrange
+        // Act
+        LocalDate dob = personService.generateDob();
+        // Assert
+        assertTrue(dob.toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$"));
     }
 }
 

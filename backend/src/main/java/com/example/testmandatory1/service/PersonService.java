@@ -1,5 +1,6 @@
 package com.example.testmandatory1.service;
 
+import com.example.testmandatory1.ValidationException;
 import com.example.testmandatory1.model.Person;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -35,7 +36,7 @@ public class PersonService {
         return LocalDate.of(year, month, day);
     }
 
-    public String generateCpr(String gender, LocalDate unformattedDOB) throws IllegalArgumentException {
+    public String generateCpr(String gender, LocalDate unformattedDOB) throws ValidationException {
         String cprGender = "";
         DateTimeFormatter formattedDOB = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String DateOfBirth = unformattedDOB.format(formattedDOB);
@@ -47,7 +48,7 @@ public class PersonService {
                 int index = random.nextInt(ODD_NUMBERS.length);
                 cprGender = ODD_NUMBERS[index];
             } else {
-            throw new IllegalArgumentException();
+            throw new ValidationException("Invalid gender: " + gender);
         }
 
         StringBuilder randomFillNumbers = new StringBuilder();
@@ -55,8 +56,14 @@ public class PersonService {
             randomFillNumbers.append(random.nextInt(10));
         }
 
-        return DateOfBirth.substring(0, 2) + DateOfBirth.substring(3, 5) +
-                DateOfBirth.substring(8, 10) + "-" + randomFillNumbers + cprGender;
+        StringBuilder cpr = new StringBuilder();
+        cpr.append(DateOfBirth.substring(0, 2));
+        cpr.append(DateOfBirth.substring(3, 5));
+        cpr.append(DateOfBirth.substring(8, 10));
+        cpr.append("-");
+        cpr.append(randomFillNumbers);
+        cpr.append(cprGender);
+        return cpr.toString();
 
     }
     /*
