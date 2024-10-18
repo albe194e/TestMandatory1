@@ -3,4 +3,3 @@ backend/target/
 .idea/
 /backend/target
 .env
-backend/src/main/resources/application-local.properties
