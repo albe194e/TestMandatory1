@@ -26,6 +26,8 @@ class PersonServiceTest {
         assertNotNull(nameGenderDto.getName());
         assertNotNull(nameGenderDto.getSurname());
         assertNotNull(nameGenderDto.getGender());
+        assertNotNull(nameGenderDto.getDob());
+        assertNotNull(nameGenderDto.getCpr());
     }
 
 

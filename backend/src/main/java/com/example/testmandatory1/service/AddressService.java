@@ -73,9 +73,9 @@ public class AddressService {
 
     private String generateFloor() {
         StringBuilder sb = new StringBuilder();
-        boolean isGroundFloow = random.nextBoolean();
+        boolean isGroundFloor = random.nextBoolean();
 
-        if (isGroundFloow) {
+        if (isGroundFloor) {
             sb.append("st");
         } else {
             sb.append(random.nextInt(1, 100));

@@ -7,7 +7,7 @@ document.getElementById('frmGenerate').addEventListener('submit', function (even
   const numberOfPersons = document.getElementById('txtNumberPersons').value;
   const partialOptions = document.getElementById('cmbPartialOptions').value;
 
-  let endpoint = '';
+  let endpoint;
 
   if (isPartial) {
     if (partialOptions === "address" || partialOptions === "phone") {

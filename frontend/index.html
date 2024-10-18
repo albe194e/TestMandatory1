@@ -20,13 +20,13 @@
       <fieldset class="border border-gray-300 p-4 rounded-lg">
         <div id="person" class="flex items-center space-x-3 mb-4">
           <input type="radio" name="fake-data" id="chkPerson" class="h-4 w-4 text-blue-600 focus:ring-blue-500" checked>
-          <input type="number" id="txtNumberPersons" min="2" max="100" value="2" required class="w-16 border border-gray-300 rounded p-1">
+          <label for="txtNumberPersons"></label><input type="number" id="txtNumberPersons" min="2" max="100" value="2" required class="w-16 border border-gray-300 rounded p-1">
           <label for="chkPerson" class="text-lg">person(s)</label>
         </div>
         <div id="partialOptions" class="flex items-center space-x-3 mb-4">
           <input type="radio" name="fake-data" id="chkPartialOptions" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
           <label for="chkPartialOptions" class="text-lg">Partial generation:</label>
-          <select id="cmbPartialOptions" class="border border-gray-300 rounded p-1">
+          <label for="cmbPartialOptions"></label><select id="cmbPartialOptions" class="border border-gray-300 rounded p-1">
             <option value="cpr" selected>CPR</option>
             <option value="name-gender">Name and gender</option>
             <option value="name-gender-dob">Name, gender and birthdate</option>
