@@ -78,21 +78,13 @@ public class PersonTest {
     public void testGenerateCprInvalidDate() {
         // Arrange
         String gender = "male";
-        LocalDate dob = null;
-        try {
-            dob = LocalDate.of(20150, 4222, 191); // This will throw an exception
-            boolean result = personService.generateCpr(gender, dob).matches("^[0-9]{6}-[0-9]{4}$");
-            assertFalse(result);
-        } catch (DateTimeException e) {
-            // Act
-            boolean result = false;
-            // Assert
-            assertFalse(result);
-            return;
-        }
-        // If no exception is thrown, fail the test
-        fail("Expected DateTimeException to be thrown");
+        // Act & Assert
+        assertThrows(DateTimeException.class, () -> {
+            LocalDate dob = LocalDate.of(20150, 4222, 191); // This will throw an exception
+            personService.generateCpr(gender, dob);
+        });
     }
+
 
     @Test
     public void testGenerateDobFormat() {

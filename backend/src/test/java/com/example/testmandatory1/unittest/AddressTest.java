@@ -85,7 +85,7 @@ public class AddressTest {
     // Null street
     @Test
     void testNullStreet() {
-        assertThrows(NullPointerException.class, () -> address.setStreet(null));
+        assertThrows(ValidationException.class, () -> address.setStreet(null));
     }
 
     // ===========================
@@ -157,7 +157,7 @@ public class AddressTest {
 
     @Test
     void testNullNumber() {
-        assertThrows(NullPointerException.class, () -> address.setNumber(null));
+        assertThrows(ValidationException.class, () -> address.setNumber(null));
     }
 
     // ===========================
@@ -211,7 +211,7 @@ public class AddressTest {
 
     @Test
     void testNullFloor() {
-        assertThrows(NullPointerException.class, () -> address.setFloor(null));
+        assertThrows(ValidationException.class, () -> address.setFloor(null));
     }
 
     // ===========================
@@ -313,6 +313,6 @@ public class AddressTest {
 
     @Test
     void testNullDoor() {
-        assertThrows(NullPointerException.class, () -> address.setDoor(null));
+        assertThrows(ValidationException.class, () -> address.setDoor(null));
     }
 }
