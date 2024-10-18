@@ -2,7 +2,9 @@ package com.example.testmandatory1.model;
 
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDate;
 
 @Data
 @ToString
@@ -13,19 +15,10 @@ public class Person {
     private String surname;
     private String gender;
 
-    private String dob;
-
+    private LocalDate dob;
     private Address address;
 
     private String phoneNumber;
-
-    public Person(String name, String surname, String gender, String dob, String cpr) {
-        this.name = name;
-        this.surname = surname;
-        this.gender = gender.substring(0, 1).toUpperCase() + gender.substring(1).toLowerCase();
-        this.dob = dob;
-        this.cpr = cpr;
-    }
 
     public Person(String name, String surname, String gender) {
         this.name = name;
@@ -35,6 +28,5 @@ public class Person {
 
     public Person() {
     }
-
 }
 

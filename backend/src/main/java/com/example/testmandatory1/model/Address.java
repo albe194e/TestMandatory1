@@ -62,22 +62,21 @@ public class Address {
             throw new ValidationException("Number: {" + number +  "} must match pattern either 1-999 (ex: 536) or 1-999A-Z (ex: 534B)");
         }
     }
+    
     public void setStreet(String street) {
 
         if (street == null || street.isEmpty()) {
             throw new ValidationException("street cannot be null or empty");
         }
-
-        // Alphabetic-only validation (allows alphabetic characters and spaces)
-        if (!street.matches("[a-zA-Z ]+")) { 
-            throw new ValidationException(String.format("%s can only contain alphabetic characters and spaces", street));
+        if (!street.matches("[a-zA-ZæøåÆØÅ]+")) {
+            throw new ValidationException(String.format("%s can only contain alphabetic chars", street));
         }
 
-        // Length validation (3-30 characters after trimming)
         if (street.length() < 3 || street.length() > 30) {
-            throw new ValidationException(String.format("%s: Street name should be between 3 and 30 characters", street));
+            throw new ValidationException(String.format("%s Street name should be longer than 2 chars and shorter than 30", street));
         }
 
         this.street = street;
     }
+
 }

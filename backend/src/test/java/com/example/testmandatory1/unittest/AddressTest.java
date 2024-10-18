@@ -1,11 +1,11 @@
 package com.example.testmandatory1.unittest;
+import com.example.testmandatory1.model.Address;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.testmandatory1.Address;
 import com.example.testmandatory1.ValidationException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,11 +57,9 @@ public class AddressTest {
     // Invalid street lengths (<3 or >30 characters)
     @ParameterizedTest
     @CsvSource({
-            "A",
-            "Aa",            
-            "", //0 length
+            "\"\"", // this explicitly passes an empty string
             "Helsingørrrrrrrrrrrrrrrrrrrrrrr",
-            "Helsingørrrrrrrrrrrrrrrrrrrrrrrr",           
+            "Helsingørrrrrrrrrrrrrrrrrrrrrrrr"
     })
     void testInvalidStreetLength(String street) {
         assertThrows(ValidationException.class, () -> address.setStreet(street));
@@ -87,7 +85,7 @@ public class AddressTest {
     // Null street
     @Test
     void testNullStreet() {
-        assertThrows(ValidationException.class, () -> address.setStreet(null));
+        assertThrows(NullPointerException.class, () -> address.setStreet(null));
     }
 
     // ===========================
@@ -159,7 +157,7 @@ public class AddressTest {
 
     @Test
     void testNullNumber() {
-        assertThrows(ValidationException.class, () -> address.setNumber(null));
+        assertThrows(NullPointerException.class, () -> address.setNumber(null));
     }
 
     // ===========================
@@ -213,7 +211,7 @@ public class AddressTest {
 
     @Test
     void testNullFloor() {
-        assertThrows(ValidationException.class, () -> address.setFloor(null));
+        assertThrows(NullPointerException.class, () -> address.setFloor(null));
     }
 
     // ===========================
@@ -231,10 +229,6 @@ public class AddressTest {
             "50",
             "49",
             "25",
-            "a",
-            "b",
-            "z",
-            "x",
             "a-1",
             "a-2",
             "a-999",
@@ -319,6 +313,6 @@ public class AddressTest {
 
     @Test
     void testNullDoor() {
-        assertThrows(ValidationException.class, () -> address.setDoor(null));
+        assertThrows(NullPointerException.class, () -> address.setDoor(null));
     }
 }

@@ -1,6 +1,6 @@
 package com.example.testmandatory1.integrationtest;
 
-import com.example.testmandatory1.dto.PersonDto;
+import com.example.testmandatory1.model.Person;
 import com.example.testmandatory1.service.PersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,12 @@ class PersonServiceTest {
     @Test
     public void testDisplayRandomPerson() throws IOException {
         // Act
-        PersonDto nameGenderDto = personService.getRandomPerson();
+        Person nameGenderDto = personService.getRandomPerson();
 
         // Assert
         assertNotNull(nameGenderDto);
-        assertNotNull(nameGenderDto.getFirstName());
-        assertNotNull(nameGenderDto.getLastName());
+        assertNotNull(nameGenderDto.getName());
+        assertNotNull(nameGenderDto.getSurname());
         assertNotNull(nameGenderDto.getGender());
     }
 
