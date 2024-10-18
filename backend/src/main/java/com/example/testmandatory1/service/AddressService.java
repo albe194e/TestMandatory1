@@ -61,7 +61,7 @@ public class AddressService {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append(String.valueOf(streetNumber));
+        sb.append((streetNumber));
         if (containLetter) {
             sb.append(letters.charAt(random.nextInt(letters.length())));
         }
