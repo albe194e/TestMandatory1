@@ -10,8 +10,6 @@ import com.example.testmandatory1.model.CityPostalCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.testmandatory1.dto.AddressDto;
-
 @Service
 public class AddressService {
 
