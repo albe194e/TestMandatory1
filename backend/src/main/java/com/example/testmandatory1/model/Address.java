@@ -21,6 +21,13 @@ public class Address {
     public Address() {}
 
     public void setDoor(String door) {
+
+        if (door == null) {
+            throw new ValidationException("Door cannot be null");
+        }
+        if (door.isEmpty()) {
+            throw new ValidationException("Door cannot be empty");
+        }
         String doorRegex = "^(th|mf|tv|([1-9]|[1-4][0-9]|50)|([a-z]-?[0-9]{1,3}))$";
 
         if (door.matches(doorRegex)) {
@@ -31,6 +38,10 @@ public class Address {
     }
     public void setFloor(String floor) {
 
+        if (floor == null || floor.isEmpty()) {
+            throw new ValidationException("floor cannot be null or empty");
+        }
+
         if (floor.equals("st") || floor.matches("^([1-9][0-9]?)$")) {
             this.floor = floor;
         } else {
@@ -38,6 +49,10 @@ public class Address {
         }
     }
     public void setNumber(String number) {
+
+        if (number == null || number.isEmpty()) {
+            throw new ValidationException("number cannot be null or empty");
+        }
 
         String numberAndLetterRegex = "([1-9][0-9]{0,2})([A-Z])";
         String numberOnlyRegex = "^([1-9][0-9]{0,2})$";
@@ -49,12 +64,18 @@ public class Address {
     }
     public void setStreet(String street) {
 
-        if (!street.matches("[a-zA-Z]+")) {
-            throw new ValidationException(String.format("{} can only contain alphabetic chars", street));
+        if (street == null || street.isEmpty()) {
+            throw new ValidationException("street cannot be null or empty");
         }
 
-        if (street.length() < 3 && street.length() > 30) {
-            throw new ValidationException(String.format("{} Street name should be shorter than 2 chars and longer than 30", street));
+        // Alphabetic-only validation (allows alphabetic characters and spaces)
+        if (!street.matches("[a-zA-Z ]+")) { 
+            throw new ValidationException(String.format("%s can only contain alphabetic characters and spaces", street));
+        }
+
+        // Length validation (3-30 characters after trimming)
+        if (street.length() < 3 || street.length() > 30) {
+            throw new ValidationException(String.format("%s: Street name should be between 3 and 30 characters", street));
         }
 
         this.street = street;
