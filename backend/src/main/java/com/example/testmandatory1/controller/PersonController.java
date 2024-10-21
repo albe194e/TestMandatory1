@@ -1,5 +1,6 @@
 package com.example.testmandatory1.controller;
 
+import com.example.testmandatory1.ValidationError;
 import com.example.testmandatory1.ValidationException;
 import com.example.testmandatory1.model.Address;
 import com.example.testmandatory1.model.Person;
@@ -70,15 +71,18 @@ public class PersonController {
     }
 
     @GetMapping("/detailed-person/{number}")
-    public ResponseEntity<List<Person>> getPeople(@PathVariable int number) {
+    public ResponseEntity<Object> getPeople(@PathVariable int number) {
         try {
             return ResponseEntity.ok(generateService.generatePerson(number));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ValidationError(e.getMessage()));
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(null);
+                    .body(new ValidationError("An internal server error occurred."));
         }
-
     }
+
 
     @GetMapping("/phone")
     public ResponseEntity<String> getPhoneNumber() {

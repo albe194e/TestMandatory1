@@ -2,8 +2,12 @@ package com.example.testmandatory1.unittest;
 
 import com.example.testmandatory1.ValidationException;
 import com.example.testmandatory1.model.Person;
+import com.example.testmandatory1.service.PersonGenerationService;
 import com.example.testmandatory1.service.PersonService;
+import jakarta.validation.constraints.AssertTrue;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +27,9 @@ class PersonTest {
     @SpyBean
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    PersonGenerationService personGenerationService;
 
     @Test
     void testDisplayRandomPerson() throws IOException {
@@ -46,6 +53,22 @@ class PersonTest {
     }
 
     @Test
+    void testDisplayOnePerson() throws IOException {
+        // Arrange
+        List<Person> mockPersons = List.of(
+                new Person("John", "Doe", "Male")
+        );
+
+        Mockito.doReturn(mockPersons).when(personService).loadPersonsFromFile();
+
+        // Act
+        Person person = personService.getRandomPerson();
+
+        // Assert
+        assertEquals("John", person.getName());
+    }
+
+    @Test
     void testDisplayRandomPerson_EmptyFile_ThrowError() throws IOException {
         // Arrange
         List<Person> emptyPersons = List.of();
@@ -54,6 +77,8 @@ class PersonTest {
         // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> personService.getRandomPerson());
     }
+
+
 
     @Test
     public void testLoadPersonsFromFile_FileNotFound() throws IOException {
@@ -105,6 +130,27 @@ class PersonTest {
         LocalDate dob = personService.generateDob();
         // Assert
         assertTrue(dob.toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$"));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "2",
+            "50",
+            "100"
+    })
+    void testValidAmountOfPeople(int number) {
+        // Act & Assert
+        assertDoesNotThrow(() -> personGenerationService.generatePerson(number));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1",
+            "101"
+    })
+    void testInvalidAmountOfPeople(int number) {
+        // Act & Assert
+        assertThrows(ValidationException.class, () -> personGenerationService.generatePerson(number));
     }
 }
 
