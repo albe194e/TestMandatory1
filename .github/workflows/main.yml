@@ -43,7 +43,7 @@ jobs:
       - name: Start Backend Application
         working-directory: backend
         run: |
-          mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=test -Ddebug &
+          mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=test &
           sleep 5
 
       # Step 7: Install dependencies and build the frontend
@@ -71,7 +71,7 @@ jobs:
       # Step 11: Run Unit Tests (uses H2 in-memory database)
       - name: Run Unit Tests (Backend)
         working-directory: backend
-        run: mvn test -Ptest -Dspring-boot.run.arguments=--spring.profiles.active=test -e -X
+        run: mvn test -Ptest -Dspring-boot.run.arguments=--spring.profiles.active=test
 
       # Step 12: Install Postman CLI
       - name: Install Postman CLI
