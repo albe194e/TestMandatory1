@@ -17,7 +17,7 @@ class PersonServiceTest {
     private PersonService personService;
 
     @Test
-    public void testDisplayRandomPerson() throws IOException {
+    void testDisplayRandomPerson() throws IOException {
         // Act
         Person nameGenderDto = personService.getRandomPerson();
 

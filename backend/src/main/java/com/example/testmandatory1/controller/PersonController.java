@@ -1,14 +1,12 @@
 package com.example.testmandatory1.controller;
 
 import com.example.testmandatory1.ValidationException;
-import com.example.testmandatory1.dto.AddressDto;
 import com.example.testmandatory1.model.Address;
 import com.example.testmandatory1.model.Person;
 import com.example.testmandatory1.service.AddressService;
 import com.example.testmandatory1.service.PersonGenerationService;
 import com.example.testmandatory1.service.PersonService;
 import com.example.testmandatory1.service.PhoneNumberService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -39,7 +39,7 @@ public class PersonService {
     public String generateCpr(String gender, LocalDate unformattedDOB) throws ValidationException {
         String cprGender;
         DateTimeFormatter formattedDOB = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String DateOfBirth = unformattedDOB.format(formattedDOB);
+        String dob = unformattedDOB.format(formattedDOB);
 
         if (gender.equalsIgnoreCase("female")) {
                 int index = random.nextInt(EVEN_NUMBERS.length);
@@ -57,9 +57,9 @@ public class PersonService {
         }
 
         StringBuilder cpr = new StringBuilder();
-        cpr.append(DateOfBirth, 0, 2);
-        cpr.append(DateOfBirth, 3, 5);
-        cpr.append(DateOfBirth, 8, 10);
+        cpr.append(dob, 0, 2);
+        cpr.append(dob, 3, 5);
+        cpr.append(dob, 8, 10);
         cpr.append("-");
         cpr.append(randomFillNumbers);
         cpr.append(cprGender);
@@ -91,7 +91,7 @@ public class PersonService {
 
     public Person getRandomPerson() throws IOException {
         List<Person> persons = loadPersonsFromFile();
-        Person randomPerson = persons.get(new Random().nextInt(persons.size()));
+        Person randomPerson = persons.get(random.nextInt(persons.size()));
         randomPerson.setDob(generateDob());
         randomPerson.setCpr(generateCpr(randomPerson.getGender(), randomPerson.getDob()));
         return randomPerson;

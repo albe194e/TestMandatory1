@@ -2,7 +2,6 @@ package com.example.testmandatory1.model;
 
 import com.example.testmandatory1.ValidationException;
 import lombok.Data;
-import lombok.Getter;
 
 @Data
 public class Address {
@@ -28,7 +27,7 @@ public class Address {
         if (door.isEmpty()) {
             throw new ValidationException("Door cannot be empty");
         }
-        String doorRegex = "^(th|mf|tv|([1-9]|[1-4][0-9]|50)|([a-z]-?[0-9]{1,3}))$";
+        String doorRegex = "^(th|mf|tv|([1-9]|[1-4]\\d|50)|([a-z]-?\\d{1,3}))$";
 
         if (door.matches(doorRegex)) {
             this.door = door;
@@ -42,7 +41,7 @@ public class Address {
             throw new ValidationException("floor cannot be null or empty");
         }
 
-        if (floor.equals("st") || floor.matches("^([1-9][0-9]?)$")) {
+        if (floor.equals("st") || floor.matches("^([1-9]\\d?)$")) {
             this.floor = floor;
         } else {
             throw new ValidationException("Floor: {" + floor + "} must either be \"st\" or \"1-99\"");
@@ -54,8 +53,8 @@ public class Address {
             throw new ValidationException("number cannot be null or empty");
         }
 
-        String numberAndLetterRegex = "([1-9][0-9]{0,2})([A-Z])";
-        String numberOnlyRegex = "^([1-9][0-9]{0,2})$";
+        String numberAndLetterRegex = "([1-9]\\d{0,2})([A-Z])";
+        String numberOnlyRegex = "^([1-9]\\d{0,2})$";
         if (number.matches(numberAndLetterRegex) || number.matches(numberOnlyRegex)) {
             this.number = number;
         } else {

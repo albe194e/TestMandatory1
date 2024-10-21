@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PhoneNumberServiceTest {
+class PhoneNumberServiceTest {
 
     private PhoneNumberService phoneNumberService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         phoneNumberService = new PhoneNumberService();
     }
 
     @Test
-    public void testGeneratePhoneNumber_ValidLength() {
+    void testGeneratePhoneNumber_ValidLength() {
         String phoneNumber = phoneNumberService.generatePhoneNumber();
 
         // Test that the generated phone number has 8 digits
@@ -24,7 +24,7 @@ public class PhoneNumberServiceTest {
     }
 
     @Test
-    public void testGeneratePhoneNumber_ValidPrefix() {
+    void testGeneratePhoneNumber_ValidPrefix() {
         String phoneNumber = phoneNumberService.generatePhoneNumber();
 
         // Test that the generated phone number starts with a valid prefix
@@ -32,7 +32,7 @@ public class PhoneNumberServiceTest {
     }
 
     @Test
-    public void testIsValidPrefix_ValidPrefixes() {
+    void testIsValidPrefix_ValidPrefixes() {
         // Test for a few known valid prefixes
         assertTrue(phoneNumberService.isValidPrefix("21234567"), "The prefix '2' should be valid.");
         assertTrue(phoneNumberService.isValidPrefix("30234567"), "The prefix '30' should be valid.");
@@ -40,7 +40,7 @@ public class PhoneNumberServiceTest {
     }
 
     @Test
-    public void testIsValidPrefix_InvalidPrefixes() {
+    void testIsValidPrefix_InvalidPrefixes() {
         // Test for an invalid prefix
         assertFalse(phoneNumberService.isValidPrefix("99999999"), "The prefix '99' should be invalid.");
         assertFalse(phoneNumberService.isValidPrefix("12345678"), "The prefix '1' should be invalid.");
@@ -48,7 +48,7 @@ public class PhoneNumberServiceTest {
     }
 
     @Test
-    public void testGeneratePhoneNumber_Uniqueness() {
+    void testGeneratePhoneNumber_Uniqueness() {
         // Generate a few phone numbers and test uniqueness
         String phoneNumber1 = phoneNumberService.generatePhoneNumber();
         String phoneNumber2 = phoneNumberService.generatePhoneNumber();

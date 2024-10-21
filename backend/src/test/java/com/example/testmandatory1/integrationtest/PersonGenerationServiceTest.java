@@ -19,7 +19,7 @@ class PersonGenerationServiceTest {
     private PersonGenerationService personGenerationServiceService;
 
     @Test
-    public void testGeneratePerson() throws IOException {
+    void testGeneratePerson() throws IOException {
         // Act
         List<Person> people = personGenerationServiceService.generatePerson(5);
 

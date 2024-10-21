@@ -23,7 +23,7 @@ class AddressServiceTest {
     private AddressRepository addressRepository;
 
     @Test
-    public void testDisplayRandomAddress() throws IllegalArgumentException {
+    void testDisplayRandomAddress() throws IllegalArgumentException {
         // Act
         Address address = addressService.generateAddress();
 
@@ -39,7 +39,7 @@ class AddressServiceTest {
     }
 
     @Test
-    public void testCityPostalCodeDataLoaded() {
+    void testCityPostalCodeDataLoaded() {
         List<CityPostalCode> codes = addressRepository.findAll();
         assertFalse(codes.isEmpty(), "City postal codes should not be empty after initialization.");
     }

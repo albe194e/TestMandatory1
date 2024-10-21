@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class PhoneNumberConstants {
+
+    private PhoneNumberConstants(){}
+    
     public static final List<String> VALID_PREFIXES = Collections.unmodifiableList(Arrays.asList(
             "2", "30", "31", "40", "41", "42", "50", "51", "52", "53", "60", "61",
             "71", "81", "91", "92", "93", "342", "344", "345", "346", "347", "348", "349",

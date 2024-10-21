@@ -14,7 +14,7 @@ class PhoneNumberServiceTest {
     private PhoneNumberService phoneNumberService;
 
     @Test
-    public void testGeneratePhoneNumber() {
+    void testGeneratePhoneNumber() {
         // Act
         String phoneNumber = phoneNumberService.generatePhoneNumber();
 

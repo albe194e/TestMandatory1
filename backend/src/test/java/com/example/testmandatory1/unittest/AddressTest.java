@@ -11,7 +11,7 @@ import com.example.testmandatory1.ValidationException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class AddressTest {
+class AddressTest {
 
     private Address address;
 

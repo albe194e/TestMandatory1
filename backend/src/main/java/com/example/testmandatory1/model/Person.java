@@ -2,7 +2,6 @@ package com.example.testmandatory1.model;
 
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 

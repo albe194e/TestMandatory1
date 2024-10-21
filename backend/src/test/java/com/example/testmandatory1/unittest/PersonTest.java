@@ -18,14 +18,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class PersonTest {
+class PersonTest {
 
     @SpyBean
     @Autowired
     private PersonService personService;
 
     @Test
-    public void testDisplayRandomPerson() throws IOException {
+    void testDisplayRandomPerson() throws IOException {
         // Arrange
         List<Person> mockPersons = Arrays.asList(
                 new Person("John", "Doe", "Male"),
@@ -44,7 +44,7 @@ public class PersonTest {
     }
 
     @Test
-    public void testDisplayRandomPerson_EmptyFile_ThrowError() throws IOException {
+    void testDisplayRandomPerson_EmptyFile_ThrowError() throws IOException {
         // Arrange
         List<Person> emptyPersons = List.of();
         Mockito.doReturn(emptyPersons).when(personService).loadPersonsFromFile();
@@ -54,7 +54,7 @@ public class PersonTest {
     }
 
     @Test
-    public void testGenerateCprCorrectInputAndFormat() {
+    void testGenerateCprCorrectInputAndFormat() {
         // Arrange
         String gender = "male";
         LocalDate dob = LocalDate.of(2015, 4, 19);
@@ -66,7 +66,7 @@ public class PersonTest {
     }
 
     @Test
-    public void testGenerateCprInvalidGender() {
+    void testGenerateCprInvalidGender() {
         // Arrange
         String gender = "person";
         LocalDate dob = LocalDate.of(2015, 4, 19);
@@ -75,7 +75,7 @@ public class PersonTest {
     }
 
     @Test
-    public void testGenerateCprInvalidDate() {
+    void testGenerateCprInvalidDate() {
         // Arrange
         String gender = "male";
         // Act & Assert
@@ -87,7 +87,7 @@ public class PersonTest {
 
 
     @Test
-    public void testGenerateDobFormat() {
+    void testGenerateDobFormat() {
         // Arrange
         // Act
         LocalDate dob = personService.generateDob();
