@@ -41,6 +41,8 @@ class PersonTest {
         assertNotNull(person);
         assertTrue(person.getName().equals("John") || person.getName().equals("Jane"));
         assertNotNull(person.getGender());
+        assertNotNull(person.getDob());
+        assertNotNull(person.getCpr());
     }
 
     @Test
@@ -52,6 +54,16 @@ class PersonTest {
         // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> personService.getRandomPerson());
     }
+
+    @Test
+    public void testLoadPersonsFromFile_FileNotFound() throws IOException {
+        // Arrange
+        Mockito.doThrow(new IOException("File not found")).when(personService).loadPersonsFromFile();
+
+        // Act & Assert
+        assertThrows(IOException.class, () -> personService.loadPersonsFromFile());
+    }
+
 
     @Test
     void testGenerateCprCorrectInputAndFormat() {
