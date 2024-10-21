@@ -90,10 +90,14 @@ class PersonTest {
     }
 
 
-    @Test
-    void testGenerateCprCorrectInputAndFormat() {
+    @ParameterizedTest
+    @CsvSource({
+            "male, 13579",
+            "female, 02468",
+            "FEMALE, 02468"
+    })
+    void testGenerateCprCorrectInputAndFormat(String gender) {
         // Arrange
-        String gender = "male";
         LocalDate dob = LocalDate.of(2015, 4, 19);
         // Act
         boolean result = personService.generateCpr(gender,
