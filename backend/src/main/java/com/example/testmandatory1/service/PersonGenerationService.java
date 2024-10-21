@@ -1,5 +1,6 @@
 package com.example.testmandatory1.service;
 
+import com.example.testmandatory1.ValidationException;
 import com.example.testmandatory1.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class PersonGenerationService {
 
     public List<Person> generatePerson(int number) throws IOException {
 
+        if (number < 2 || number > 100) {
+            throw new ValidationException("Number must be greater than 2 and less than 100");
+        }
         ArrayList<Person> people = new ArrayList<>();
 
         for (int i = 0; i < number; i++) {

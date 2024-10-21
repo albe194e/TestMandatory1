@@ -90,12 +90,10 @@ document.getElementById('frmGenerate').addEventListener('submit', function (even
             template.querySelector('.phoneNumberValue').textContent = person.phoneNumber;
           }
 
-          // Append the filled template to the output section for each person
           outputSection.appendChild(template);
         });
       } else {
-        // For a single person, handle based on partialOptions
-        const person = persons[0]; // Access the first (and only) person
+        const person = persons[0];
         const template = document.getElementById('personTemplate').content.cloneNode(true);
 
         if (partialOptions === 'cpr') {
