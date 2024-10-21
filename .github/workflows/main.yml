@@ -13,20 +13,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: "temurin"
           java-version: "23"
 
-      - name: Cache Maven dependencies
+      - name: Cache Maven dependencies 
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
@@ -34,7 +27,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Install Maven dependencies
+      - name: Install Maven dependencies and run tests
         working-directory: backend
         run: mvn verify
 
@@ -76,10 +69,3 @@ jobs:
         run: |
           postman collection run "27701941-e6b1b59c-0565-4209-9936-5834d840a9c2" -e "27701941-ffcc469a-a8ad-489a-b4b6-f6079a5697a7" \
             --env-var base_url="$BASE_URL"
-
-      - name: Build and analyze with SonarCloud
-        working-directory: backend
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=albe194e_TestMandatory1
